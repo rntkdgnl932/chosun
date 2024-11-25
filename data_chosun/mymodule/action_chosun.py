@@ -28,6 +28,14 @@ def skip_check(cla):
             print("skip_1", imgs_)
             is_skip = True
 
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\skip_2.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(800, 580, 900, 650, cla, img, 0.8)
+        if imgs_ is not None and imgs_ != False:
+            print("skip_2", imgs_)
+            is_skip = True
+
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\next_1.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
