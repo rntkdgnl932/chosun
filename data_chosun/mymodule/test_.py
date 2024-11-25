@@ -38,22 +38,23 @@ def go_test():
     from function_game import imgs_set_for, click_pos_reg, imgs_set_
     from clean_screen_chosun import clean_screen
     from action_chosun import juljun_off, juljun_on
-    from tuto_chosun import way_click
+    from tuto_chosun import way_click, quest_btn
 
 
     try:
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\all_confirms\\notify_confirm.PNG"
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\attack_check\\auto_on.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
+        imgs_ = imgs_set_(420, 580, 500, 620, cla, img, 0.7)
         if imgs_ is not None and imgs_ != False:
-            print("notify_confirm", imgs_)
+            print("auto_on", imgs_)
 
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\tuto\\tuto_start\\move_notisfy_confirm.PNG"
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\attack_check\\auto_off.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
+        imgs_ = imgs_set_(855, 625, 910, 680, cla, img, 0.95)
         if imgs_ is not None and imgs_ != False:
-            print("move_notisfy_confirm", imgs_)
+            print("auto_off", imgs_)
+
     except Exception as e:
         print(e)

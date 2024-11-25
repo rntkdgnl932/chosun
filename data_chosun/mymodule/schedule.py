@@ -8,6 +8,7 @@ def go_test(cla):
 
 
 def myQuest_play_check(cla, data):
+    print("myQuest_play_check =>", data)
     try:
         import os.path
         from datetime import datetime
@@ -151,7 +152,7 @@ def myQuest_play_check(cla, data):
         else:
             with open(file_path2, "w", encoding='utf-8-sig') as file:
                 file.write(str(nowDay) + ":" + str(refresh_time) + "\n")
-                myQuest_play_check(cla, data)
+                myQuest_play_check(cla, "myQuest_play_check..")
 
         #스케쥴 관련
         cla_schedule = ""
@@ -228,7 +229,7 @@ def myQuest_play_check(cla, data):
                     shcedule = file.read().splitlines()
                 with open(file_path, "w", encoding='utf-8-sig') as file:
                     file.write(shcedule)
-                    myQuest_play_check(cla, data)
+                    myQuest_play_check(cla, "myQuest_play_check....")
             else:
                 print('디렉토리 존재하지 않음')
                 os.makedirs(dir_path)
@@ -236,7 +237,7 @@ def myQuest_play_check(cla, data):
                     shcedule = file.read().splitlines()
                 with open(file_path, "w", encoding='utf-8-sig') as file:
                     file.write(shcedule)
-                    myQuest_play_check(cla, data)
+                    myQuest_play_check(cla, "myQuest_play_check......")
 
         return start, start_, refresh_
     except Exception as e:

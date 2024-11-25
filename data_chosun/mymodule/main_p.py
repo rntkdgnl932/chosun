@@ -52,6 +52,7 @@ from stop_event18 import _stop_please
 
 from test_ import go_test
 
+from tuto_chosun import tuto_start
 
 from server import game_start
 import variable as v_
@@ -3844,7 +3845,7 @@ class game_Playing(QThread):
                             else:
 
                                 # 스케쥴부터 불러오기
-                                result_schedule = myQuest_play_check(v_.now_cla, "check")
+                                result_schedule = myQuest_play_check(v_.now_cla, "main_check")
                                 print("result_schedule", result_schedule)
                                 character_id = result_schedule[0][1]
                                 result_schedule_ = result_schedule[0][2]
@@ -3877,7 +3878,7 @@ class game_Playing(QThread):
                                 # 오토 시작
 
                                 if result_schedule_ == "튜토육성":
-                                    # tuto_start(v_.now_cla)
+                                    tuto_start(v_.now_cla)
                                     print("start")
 
 
