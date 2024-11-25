@@ -207,7 +207,7 @@ def way_click(cla):
             imgs_ = imgs_set_(0, 260, 930, 820, cla, img, 0.85)
             if imgs_ is not None and imgs_ != False:
                 print("right_1", imgs_)
-                click_pos_reg(imgs_.x + 70, imgs_.y, cla)
+                click_pos_reg(imgs_.x + 65, imgs_.y, cla)
                 if way_btn_count > 1:
                     way_btn_count -= 1
 
