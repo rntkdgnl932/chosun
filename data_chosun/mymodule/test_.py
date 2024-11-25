@@ -17,7 +17,7 @@ def go_test():
 
 
     print("test")
-    cla = "one"
+    cla = "two"
 
     plus = 0
 
@@ -42,19 +42,12 @@ def go_test():
 
 
     try:
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\attack_check\\auto_on.PNG"
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\skip_2.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(420, 580, 500, 620, cla, img, 0.7)
+        imgs_ = imgs_set_(800, 580, 900, 650, cla, img, 0.8)
         if imgs_ is not None and imgs_ != False:
-            print("auto_on", imgs_)
-
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\attack_check\\auto_off.PNG"
-        img_array = np.fromfile(full_path, np.uint8)
-        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(855, 625, 910, 680, cla, img, 0.95)
-        if imgs_ is not None and imgs_ != False:
-            print("auto_off", imgs_)
+            print("skip_2", imgs_)
 
     except Exception as e:
         print(e)
