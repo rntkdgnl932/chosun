@@ -60,6 +60,13 @@ def tuto_start(cla):
                                 if imgs_ is not None and imgs_ != False:
                                     print("move_notisfy_confirm", imgs_)
                                     click_pos_reg(imgs_.x, imgs_.y, cla)
+                                else:
+                                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\it_is_buy_potion.PNG"
+                                    img_array = np.fromfile(full_path, np.uint8)
+                                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                    imgs_ = imgs_set_(290, 700, 370, 740, cla, img, 0.85)
+                                    if imgs_ is not None and imgs_ != False:
+                                        click_pos_2(380, 690, cla)
                             time.sleep(0.5)
                     else:
                         is_attack = False
