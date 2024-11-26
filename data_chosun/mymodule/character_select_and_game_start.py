@@ -438,7 +438,7 @@ def game_ready(cla):
 
     from function_game import imgs_set_
     from action_chosun import game_loading_check, out_check, game_loading
-
+    from massenger import line_to_me
 
     try:
 
@@ -476,6 +476,8 @@ def game_ready(cla):
                         imgs_ = imgs_set_(700, 730, 820, 800, cla, img, 0.8)
                         if imgs_ is not None and imgs_ != False:
                             game_ready = False
+                            why = str(game_ready_count) + "초 기다리고 접속했다."
+                            line_to_me(cla, why)
                 time.sleep(1)
 
 
