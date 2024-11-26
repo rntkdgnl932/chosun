@@ -120,17 +120,24 @@ def potion_buy(cla):
                                 time.sleep(0.5)
                                 click_pos_2(535, 755, cla)
                         time.sleep(1)
-                    clean_screen()
+                    clean_screen(cla)
                 else:
-                    for i in range(2):
-                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_point_" + str(i) + ".PNG"
-                        img_array = np.fromfile(full_path, np.uint8)
-                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                        imgs_ = imgs_set_(0, 270, 920, 800, cla, img, 0.85)
-                        if imgs_ is not None and imgs_ != False:
-                            print("potion_point_", str(i), imgs_)
-                            click_pos_reg(imgs_.x, imgs_.y + 65, cla)
-                        time.sleep(1)
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\it_is_buy_potion.PNG"
+                    img_array = np.fromfile(full_path, np.uint8)
+                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                    imgs_ = imgs_set_(290, 700, 370, 740, cla, img, 0.85)
+                    if imgs_ is not None and imgs_ != False:
+                        click_pos_reg(imgs_.x, imgs_.y, cla)
+                    else:
+                        for i in range(2):
+                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_point_" + str(i) + ".PNG"
+                            img_array = np.fromfile(full_path, np.uint8)
+                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                            imgs_ = imgs_set_(0, 270, 920, 800, cla, img, 0.85)
+                            if imgs_ is not None and imgs_ != False:
+                                print("potion_point_", str(i), imgs_)
+                                click_pos_reg(imgs_.x, imgs_.y + 65, cla)
+                            time.sleep(1)
 
                 QTest.qWait(1000)
 

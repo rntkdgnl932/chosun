@@ -13,7 +13,7 @@ def tuto_start(cla):
     import numpy as np
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2
-    from action_chosun import out_check, skip_start, skip_check, game_loading_check, game_loading
+    from action_chosun import out_check, skip_start, skip_check, game_loading_check, game_loading, juljun_off
     from clean_screen_chosun import clean_screen_start
     from potion_chosun import potion_check
 
@@ -25,6 +25,7 @@ def tuto_start(cla):
         if result_loading == True:
             game_loading(cla)
         else:
+            juljun_off(cla)
 
             result_way = way_click_check(cla)
             if result_way == True:
