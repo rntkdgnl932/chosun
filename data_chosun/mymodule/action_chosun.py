@@ -225,11 +225,15 @@ def skip_start(cla):
 def menu_open(cla):
     import numpy as np
     import cv2
-
+    from clean_screen_chosun import clean_screen
     from function_game import imgs_set_, click_pos_reg
     try:
+
+        print("menu_open...game_check, clean_screen")
+
         game_check(cla)
-        print("menu_open")
+        clean_screen(cla)
+
         for i in range(5):
             full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\menu_open\\menu_setting.PNG"
             img_array = np.fromfile(full_path, np.uint8)
