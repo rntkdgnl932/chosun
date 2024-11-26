@@ -15,6 +15,7 @@ def tuto_start(cla):
     from function_game import imgs_set_, click_pos_reg, click_pos_2
     from action_chosun import out_check, skip_start, skip_check, game_loading_check, game_loading
     from clean_screen_chosun import clean_screen_start
+    from potion_chosun import potion_check
 
     try:
         print("tuto_start")
@@ -82,6 +83,9 @@ def tuto_start(cla):
                                 imgs_ = imgs_set_(420, 580, 500, 620, cla, img, 0.7)
                                 if imgs_ is not None and imgs_ != False:
                                     print("퀘스트 자동사냥 중", is_attack_countup, "초")
+                                    # 포션체크
+                                    potion_check(cla)
+
                                     time.sleep(0.5)
                                     if is_attack_count > 0:
                                         is_attack_count = 0
@@ -305,7 +309,7 @@ def quest_btn(cla):
                     read_data) + ".PNG"
                 img_array = np.fromfile(full_path, np.uint8)
                 img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.9)
+                imgs_ = imgs_set_(0, 340, 925, 800, cla, img, 0.9)
                 if imgs_ is not None and imgs_ != False:
                     print("quest_btn_", str(read_data), imgs_)
                     click_pos_reg(imgs_.x, imgs_.y, cla)
