@@ -228,7 +228,7 @@ def menu_open(cla):
 
     from function_game import imgs_set_, click_pos_reg
     try:
-
+        game_check(cla)
         print("menu_open")
         for i in range(5):
             full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\menu_open\\menu_setting.PNG"
@@ -259,7 +259,7 @@ def out_check(cla, data):
 
     from function_game import imgs_set_, click_pos_reg
     try:
-
+        game_check(cla)
         is_out = False
 
         print("out_check", data)
