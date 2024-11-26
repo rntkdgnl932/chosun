@@ -485,7 +485,7 @@ def click_pos_2(pos_1, pos_2, cla):
         if cla == 'six':
             coordinate = 960 * 5
 
-        pyautogui.moveTo(pos_1 + coordinate, pos_2)
+        # pyautogui.moveTo(pos_1 + coordinate, pos_2)
 
         if v_.now_arduino == "on":
             arduino_port = v_.COM_
@@ -565,7 +565,7 @@ def click_pos_2(pos_1, pos_2, cla):
                         data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
                         ser.write(data.encode())
 
-                        time.sleep(0.1)
+                        time.sleep(0.3)
 
                         moveX = 0
                         moveY = 0
@@ -608,7 +608,7 @@ def click_pos_reg(pos_1, pos_2, cla):
         if cla == 'six':
             coordinate = 0
 
-        pyautogui.moveTo(pos_1 + coordinate, pos_2)
+        # pyautogui.moveTo(pos_1 + coordinate, pos_2)
 
         if v_.now_arduino == "on":
             arduino_port = v_.COM_
@@ -677,7 +677,7 @@ def click_pos_reg(pos_1, pos_2, cla):
                         data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
                         ser.write(data.encode())
 
-                        time.sleep(0.1)
+                        time.sleep(0.3)
 
                         moveX = 0
                         moveY = 0

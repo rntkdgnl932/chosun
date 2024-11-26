@@ -284,6 +284,57 @@ def out_check(cla, data):
         print(e)
 
 
+def attack_check(cla):
+    import numpy as np
+    import cv2
+
+    from function_game import imgs_set_, click_pos_reg, text_check_get
+    try:
+
+        print("attack_check")
+
+        is_attack = False
+
+        result_out = out_check(cla, "attack_check")
+
+        if result_out == True:
+
+
+            for i in range(10):
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\attack_check\\auto_on.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(420, 580, 500, 620, cla, img, 0.7)
+                if imgs_ is not None and imgs_ != False:
+                    print("auto_on", imgs_)
+                    is_attack = True
+                    break
+                time.sleep(0.5)
+        else:
+            result_juljun = juljun_check(cla)
+            if result_juljun == True:
+                print("금화 등 비교하기")
+
+                result_text_1 = text_check_get(825, 446, 888, 460, cla)
+                # print("result_text_1", result_text_1)
+
+                for i in range(20):
+                    result_text_2 = text_check_get(825, 446, 888, 460, cla)
+                    # print("result_text_2", result_text_2)
+                    if result_text_1 != result_text_2:
+                        print("사냥중이다.", result_text_1)
+                        print("사냥중이다.", result_text_2)
+                        is_attack = True
+                        break
+                    else:
+                        print("사냥중인지 체크중")
+                    time.sleep(0.5)
+
+        return is_attack
+
+    except Exception as e:
+        print(e)
+
 def juljun_check(cla):
     import numpy as np
     import cv2
@@ -301,6 +352,7 @@ def juljun_check(cla):
         imgs_ = imgs_set_(375, 700, 540, 770, cla, img, 0.85)
         if imgs_ is not None and imgs_ != False:
             print("juljun_off_btn", imgs_)
+            is_juljun = True
 
 
         return is_juljun

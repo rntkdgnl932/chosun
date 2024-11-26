@@ -16,6 +16,7 @@ def dead_check(cla, data):
     from function_game import imgs_set_, click_pos_reg, click_pos_2
     from potion_chosun import potion_buy
     from action_chosun import game_loading_check, game_loading
+    from schedule import myQuest_play_check, myQuest_play_add
 
     try:
         print("dead_check")
@@ -30,6 +31,11 @@ def dead_check(cla, data):
             print("boohwal_btn", imgs_)
             click_pos_reg(imgs_.x, imgs_.y, cla)
             is_dead = True
+
+            if data == "튜토육성":
+                myQuest_play_add(cla, data)
+
+
 
             for i in range(10):
                 result_loading = game_loading_check(cla)

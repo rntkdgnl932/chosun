@@ -35,29 +35,41 @@ def go_test():
     elif cla == "six":
         plus = 960 * 5
 
-    from function_game import imgs_set_for, click_pos_reg, imgs_set_
+    from function_game import imgs_set_for, click_pos_reg, imgs_set_, text_check_get
     from clean_screen_chosun import clean_screen
-    from action_chosun import juljun_off, juljun_on
+    from action_chosun import juljun_off, juljun_on, attack_check
     from tuto_chosun import way_click, quest_btn
     from potion_chosun import potion_buy
-
+    from get_item import get_item_start
+    from jadong_chosun import jadong_spot
 
     try:
 
-        a = 215
-        b = 312
-        c = 223
-        d = 324
+        # jadong_spot(cla)
 
-        pos = (a + plus, b, c - a, d - b)
-        pyautogui.screenshot("asd.png", region=pos)
-        for i in range(10):
-            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_num\\" + str(i) + ".PNG"
-            img_array = np.fromfile(full_path, np.uint8)
-            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-            imgs_ = imgs_set_(a, b, c, d, cla, img, 0.85)
-            if imgs_ is not None and imgs_ != False:
-                print("potion_num => ", str(i), imgs_)
+        attack_check(cla)
+
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\get_item\\mission_point_1.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(505, 325, 535, 355, cla, img, 0.85)
+        if imgs_ is not None and imgs_ != False:
+            print("mission_point_1", imgs_)
+
+        # a = 215
+        # b = 312
+        # c = 223
+        # d = 324
+        #
+        # pos = (a + plus, b, c - a, d - b)
+        # pyautogui.screenshot("asd.png", region=pos)
+        # for i in range(10):
+        #     full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_num\\" + str(i) + ".PNG"
+        #     img_array = np.fromfile(full_path, np.uint8)
+        #     img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        #     imgs_ = imgs_set_(a, b, c, d, cla, img, 0.85)
+        #     if imgs_ is not None and imgs_ != False:
+        #         print("potion_num => ", str(i), imgs_)
 
     except Exception as e:
         print(e)

@@ -56,6 +56,8 @@ from tuto_chosun import tuto_start
 from action_chosun import game_check
 from dead_die import dead_check
 from potion_chosun import potion_buy
+from get_item import get_item_start
+from jadong_chosun import jadong_start
 
 from server import game_start
 import variable as v_
@@ -1017,7 +1019,7 @@ class FirstTab(QWidget):
         # 마을 의뢰
         self.com_group6 = QGroupBox('육성, 각종템받기, 거래소등록하기, 의뢰')
         cb6 = QComboBox()
-        list6 = ['스케쥴 선택', '캐릭터바꾸기', '각종템받기', '버프와물약사기', '거래소등록', '튜토육성', '의뢰_세라보그', '의뢰_바란', '의뢰_국경지대', '의뢰_유로키나산맥']
+        list6 = ['스케쥴 선택', '캐릭터바꾸기', '각종템받기', '버프와물약사기', '거래소등록', '튜토육성', '자동사냥']
         cb6.addItems(list6)
         vbox6 = QHBoxLayout()
         vbox6.addWidget(cb6)
@@ -1116,9 +1118,10 @@ class FirstTab(QWidget):
                 read_serabog = file.read().splitlines()
                 list5 = []
                 for i in range(len(read_serabog)):
-                    read_ready = read_serabog[i].split("_")
-                    list5.append(read_ready[0])
-                list5.insert(0, "< 세라보그 >")
+                    # read_ready = read_serabog[i].split("_")
+                    # list5.append(read_ready[0])
+                    list5.append(read_serabog[i])
+                list5.insert(0, "< 사냥터 >")
 
             with open(file_path2, "r", encoding='utf-8-sig') as file:
                 read_baran = file.read().splitlines()
@@ -1157,7 +1160,7 @@ class FirstTab(QWidget):
         cb5 = QComboBox()
         #list5 = ['자동 사냥터 선택1', '사냥_콜리아 삼거리', '사냥_마른땅 벌목지', '사냥_실바인 진흙탕', '사냥_실바인 저수지']
         cb5.addItems(list5)
-        jadong1 = QPushButton('세라보그 추가')
+        jadong1 = QPushButton('사냥 추가')
         jadong1.clicked.connect(self.onActivated_hunt_add)
 
         cb55 = QComboBox()
@@ -1831,12 +1834,12 @@ class FirstTab(QWidget):
         global onCharacter, onHunt
         char_ = onCharacter
         # hun_ = onHunt
-        hun_ = "사냥/serabog/" + onHunt
+        hun_ = "사냥_" + onHunt
         if onCharacter == 0:
             pyautogui.alert(button='넵', text='캐릭터를 선택해 주시지예', title='뭐합니꺼')
-        elif onHunt == '< 세라보그 >' or onHunt == 'none':
+        elif onHunt == '< 사냥터 >' or onHunt == 'none':
             pyautogui.alert(button='넵', text='던전을 선택해 주시지예', title='뭐합니꺼')
-        elif onCharacter != 0 and onHunt != '< 세라보그 >':
+        elif onCharacter != 0 and onHunt != '< 사냥터 >':
             print('char_', char_)
             print('dun_', hun_)
 
@@ -3883,9 +3886,11 @@ class game_Playing(QThread):
 
                                 if result_schedule_ == "튜토육성":
                                     tuto_start(v_.now_cla)
-                                    print("start")
-
-
+                                elif result_schedule_ == "각종템받기":
+                                    get_item_start(v_.now_cla)
+                                    myQuest_play_add(v_.now_cla, result_schedule_)
+                                elif result_schedule_ == "자동사냥":
+                                    jadong_start(v_.now_cla)
 
 
                                 time.sleep(0.5)
