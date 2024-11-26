@@ -153,7 +153,12 @@ def game_start_screen(cla, character_id):
                         else:
                             game_ready(cla)
                     time.sleep(1)
-
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\join_ready_title.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(420, 430, 520, 480, cla, img, 0.85)
+            if imgs_ is not None and imgs_ != False:
+                game_ready(cla)
 
         # 캐릭터 선택 화면
         full_path = "c:\\my_games\\" + str(v_.game_folder) + "\\" + str(
