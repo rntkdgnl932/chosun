@@ -3870,7 +3870,7 @@ class game_Playing(QThread):
                                 # 죽었는지 파악
                                 result_dead = dead_check(v_.now_cla, result_schedule_)
                                 if result_dead == True:
-                                    potion_buy(cla)
+                                    potion_buy(v_.now_cla)
 
 
                                 # 일시적인 이벤트(5000)
