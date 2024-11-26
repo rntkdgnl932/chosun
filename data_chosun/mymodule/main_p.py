@@ -54,6 +54,8 @@ from test_ import go_test
 
 from tuto_chosun import tuto_start
 from action_chosun import game_check
+from dead_die import dead_check
+from potion_chosun import potion_buy
 
 from server import game_start
 import variable as v_
@@ -3866,8 +3868,9 @@ class game_Playing(QThread):
 
 
                                 # 죽었는지 파악
-                                # dead_die(v_.now_cla, result_schedule_)
-
+                                result_dead = dead_check(v_.now_cla, result_schedule_)
+                                if result_dead == True:
+                                    potion_buy(cla)
 
 
                                 # 일시적인 이벤트(5000)
