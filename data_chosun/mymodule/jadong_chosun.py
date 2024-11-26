@@ -106,6 +106,8 @@ def jadong_spot(cla):
                                     result_loading = game_loading_check(cla)
                                     if result_loading == True:
                                         game_loading(cla)
+                                    else:
+                                        all_confirms(cla)
                                 time.sleep(1)
                             result_attack = attack_check(cla)
                             if result_attack == False:
