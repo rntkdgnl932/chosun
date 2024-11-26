@@ -150,6 +150,8 @@ def game_start_screen(cla, character_id):
                         if imgs_ is not None and imgs_ != False:
                             print("screen_touch_btn", imgs_)
                             click_pos_reg(imgs_.x, imgs_.y, cla)
+                        else:
+                            game_ready(cla)
                     time.sleep(1)
 
 
@@ -336,9 +338,6 @@ def character_change(cla, character_id):
                         result_loading = game_loading_check(cla)
                         if result_loading == True:
                             game_loading(cla)
-                        else:
-                            # 게임대기화면 확인 아직 미구현
-                            game_ready(cla)
                     time.sleep(1)
             else:
                 # 캐릭 번호와 체인지 하려는 번호 비교하기
@@ -433,7 +432,7 @@ def game_ready(cla):
     import cv2
 
     from function_game import imgs_set_
-    from action_chosun import game_loading_check, out_check
+    from action_chosun import game_loading_check, out_check, game_loading
 
 
     try:
@@ -441,46 +440,38 @@ def game_ready(cla):
         # 접속대기일 경우 기다리기
         print("game_ready")
 
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\join_ready_title.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(420, 430, 520, 480, cla, img, 0.85)
+        if imgs_ is not None and imgs_ != False:
+            print("join_ready_title", imgs_)
+            game_ready = True
+            game_ready_count = 0
+            while game_ready is True:
 
-        # full_path = "c:\\my_games\\" + str(v_.game_folder) + "\\" + str(v_.data_folder) + "\\imgs\\check\\moon_game_ready.PNG"
-        # img_array = np.fromfile(full_path, np.uint8)
-        # img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        # imgs_ = imgs_set_(400, 500, 600, 700, cla, img, 0.8)
-        # if imgs_ is not None and imgs_ != False:
-        #     game_ready = True
-        #     game_ready_count = 0
-        #     game_play_count = 0
-        #     while game_ready is True:
-        #
-        #         game_ready_count += 1
-        #
-        #         full_path = "c:\\my_games\\" + str(v_.game_folder) + "\\" + str(v_.data_folder) + "\\imgs\\check\\moon_game_ready.PNG"
-        #         img_array = np.fromfile(full_path, np.uint8)
-        #         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        #         imgs_ = imgs_set_(400, 500, 600, 700, cla, img, 0.8)
-        #         if imgs_ is not None and imgs_ != False:
-        #             game_ready_count = 0
-        #             print("기다리는중", game_ready_count, "초")
-        #         else:
-        #             # 로딩중 확인
-        #             full_path = "c:\\my_games\\" + str(v_.game_folder) + "\\" + str(v_.data_folder) + "\\imgs\\action\\loding_1.PNG"
-        #             img_array = np.fromfile(full_path, np.uint8)
-        #             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        #             imgs_ = imgs_set_(250, 920, 650, 1040, cla, img, 0.8)
-        #             if imgs_ is not None and imgs_ != False:
-        #                 loading(cla)
-        #
-        #             else:
-        #                 result_out = out_check(cla)
-        #                 if result_out == False:
-        #                     game_ready = True
-        #
-        #                 else:
-        #                     game_play_count += 1
-        #                     print("게임 3초 대기", game_ready_count)
-        #                     if game_play_count > 2:
-        #                         game_ready = False
-        #         time.sleep(1)
+                game_ready_count += 1
+
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\join_ready_title.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(420, 430, 520, 480, cla, img, 0.85)
+                if imgs_ is not None and imgs_ != False:
+                    print("기다리는중...", game_ready_count, "초")
+                else:
+                    result_loading = game_loading_check(cla)
+                    if result_loading == True:
+                        game_loading(cla)
+
+                    else:
+                        full_path = "c:\\my_games\\" + str(v_.game_folder) + "\\" + str(
+                            v_.data_folder) + "\\imgs\\game_start\\start_btn.PNG"
+                        img_array = np.fromfile(full_path, np.uint8)
+                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                        imgs_ = imgs_set_(700, 730, 820, 800, cla, img, 0.8)
+                        if imgs_ is not None and imgs_ != False:
+                            game_ready = False
+                time.sleep(1)
 
 
 
