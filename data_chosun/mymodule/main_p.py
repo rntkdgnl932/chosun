@@ -53,6 +53,7 @@ from stop_event18 import _stop_please
 from test_ import go_test
 
 from tuto_chosun import tuto_start
+from action_chosun import game_check
 
 from server import game_start
 import variable as v_
@@ -3852,7 +3853,7 @@ class game_Playing(QThread):
 
 
                                 # 게임 시작 화면인지 분석부터 하기
-                                # game_start_screen(v_.now_cla, character_id)
+                                game_check(v_.now_cla)
 
 
 

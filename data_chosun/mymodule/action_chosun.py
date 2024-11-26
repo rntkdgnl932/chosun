@@ -10,6 +10,105 @@ import variable as v_
 sys.path.append('C:/my_games/' + str(v_.game_folder) + '/' + str(v_.data_folder) + '/mymodule')
 
 
+def game_check(cla):
+    import numpy as np
+    import cv2
+
+    from function_game import imgs_set_, click_pos_reg
+    from massenger import line_to_me
+    from character_select_and_game_start import game_start_screen
+    from schedule import myQuest_play_check
+    try:
+
+        is_checked = False
+        is_start = False
+
+        print("game_check")
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\server_out_1.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(360, 480, 570, 570, cla, img, 0.8)
+        if imgs_ is not None and imgs_ != False:
+            print("server_out_1", imgs_)
+            is_checked = True
+            why = "서버 연결 끊어짐"
+        else:
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\server_out_2.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(360, 480, 570, 570, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("server_out_2", imgs_)
+                is_checked = True
+                why = "서버 연결 끊어짐"
+            else:
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\server_fix.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(360, 480, 570, 570, cla, img, 0.8)
+                if imgs_ is not None and imgs_ != False:
+                    print("server_fix", imgs_)
+                    is_checked = True
+                    why = "서버 점검 중"
+
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\fix_complete.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(360, 340, 540, 400, cla, img, 0.8)
+        if imgs_ is not None and imgs_ != False:
+            print("fix_complete", imgs_)
+            is_checked = True
+            why = "서버 점검 완료"
+
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\text_apply.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(340, 740, 580, 800, cla, img, 0.8)
+        if imgs_ is not None and imgs_ != False:
+            print("text_apply", imgs_)
+            is_start = True
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\start_skip.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(740, 270, 930, 370, cla, img, 0.8)
+        if imgs_ is not None and imgs_ != False:
+            print("start_skip", imgs_)
+            is_start = True
+
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\screen_touch_btn.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(360, 630, 560, 700, cla, img, 0.8)
+        if imgs_ is not None and imgs_ != False:
+            print("screen_touch_btn", imgs_)
+            is_start = True
+
+        if is_checked is True:
+            line_to_me(cla, why)
+            dir_path = "C:\\my_games\\load\\" + str(v_.game_folder)
+            file_path = dir_path + "\\start.txt"
+            # cla.txt
+            cla_data = str(cla) + "cla"
+            file_path2 = dir_path + "\\" + cla_data + ".txt"
+            with open(file_path, "w", encoding='utf-8-sig') as file:
+                data = 'no'
+                file.write(str(data))
+                time.sleep(0.2)
+            with open(file_path2, "w", encoding='utf-8-sig') as file:
+                data = cla
+                file.write(str(data))
+                time.sleep(0.2)
+            os.execl(sys.executable, sys.executable, *sys.argv)
+        elif is_start == True:
+
+            result_schedule = myQuest_play_check(cla, "game_check")
+            character_id = result_schedule[0][1]
+
+            game_start_screen(cla, character_id)
+
+    except Exception as e:
+        print(e)
+
 def skip_check(cla):
     import numpy as np
     import cv2

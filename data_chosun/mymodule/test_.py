@@ -17,7 +17,7 @@ def go_test():
 
 
     print("test")
-    cla = "two"
+    cla = "one"
 
     plus = 0
 
@@ -39,15 +39,25 @@ def go_test():
     from clean_screen_chosun import clean_screen
     from action_chosun import juljun_off, juljun_on
     from tuto_chosun import way_click, quest_btn
+    from potion_chosun import potion_buy
 
 
     try:
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\skip_2.PNG"
-        img_array = np.fromfile(full_path, np.uint8)
-        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(800, 580, 900, 650, cla, img, 0.8)
-        if imgs_ is not None and imgs_ != False:
-            print("skip_2", imgs_)
+
+        a = 215
+        b = 312
+        c = 223
+        d = 324
+
+        pos = (a + plus, b, c - a, d - b)
+        pyautogui.screenshot("asd.png", region=pos)
+        for i in range(10):
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_num\\" + str(i) + ".PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(a, b, c, d, cla, img, 0.85)
+            if imgs_ is not None and imgs_ != False:
+                print("potion_num => ", str(i), imgs_)
 
     except Exception as e:
         print(e)
