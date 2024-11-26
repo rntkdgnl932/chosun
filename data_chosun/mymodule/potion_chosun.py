@@ -140,7 +140,11 @@ def potion_buy(cla):
                             time.sleep(1)
 
                 QTest.qWait(1000)
-
+            for i in range(3):
+                result_confirm = all_confirms(cla)
+                if result_confirm == False:
+                    break
+                time.sleep(1)
     except Exception as e:
         print(e)
         return 0

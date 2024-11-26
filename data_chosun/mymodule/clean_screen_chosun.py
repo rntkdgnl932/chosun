@@ -39,10 +39,12 @@ def clean_screen_start(cla):
     import numpy as np
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2, imgs_set_for
-    from action_chosun import out_check, menu_open
+    from action_chosun import out_check, all_confirms
 
     try:
         print("clean_screen_start")
+
+        all_confirms(cla)
 
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\menu_open\\menu_setting.PNG"
         img_array = np.fromfile(full_path, np.uint8)
