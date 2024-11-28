@@ -58,6 +58,7 @@ from dead_die import dead_check
 from potion_chosun import potion_buy
 from get_item import get_item_start
 from jadong_chosun import jadong_start
+from character_select_and_game_start import game_start_screen
 
 from server import game_start
 import variable as v_
@@ -3917,24 +3918,81 @@ class game_Playing(QThread):
                                         break
                                 time.sleep(1)
                             if is_game == False:
-                                why = str(v_.this_game) +" 꺼진게 확실하다"
-                                print(why)
-                                line_to_me(v_.now_cla, why)
+                                # 자동으로 켜보고 안되면 알림하기...
 
-                                dir_path = "C:\\my_games\\load\\" + str(v_.game_folder)
-                                file_path = dir_path + "\\start.txt"
-                                # cla.txt
-                                cla_data = str(v_.now_cla) + "cla"
-                                file_path2 = dir_path + "\\" + cla_data + ".txt"
-                                with open(file_path, "w", encoding='utf-8-sig') as file:
-                                    data = 'no'
-                                    file.write(str(data))
-                                    time.sleep(0.2)
-                                with open(file_path2, "w", encoding='utf-8-sig') as file:
-                                    data = v_.now_cla
-                                    file.write(str(data))
-                                    time.sleep(0.2)
-                                os.execl(sys.executable, sys.executable, *sys.argv)
+                                is_out = False
+
+                                print("자동으로 켜보고 안되면 알림하기...")
+                                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\app_chosun_1.PNG"
+                                img_array = np.fromfile(full_path, np.uint8)
+                                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                imgs_ = imgs_set_(10, 350, 900, 670, v_.now_cla, img, 0.85)
+                                if imgs_ is not None and imgs_ != False:
+                                    print("app_chosun_1...", imgs_)
+                                    click_pos_reg(imgs_.x, imgs_.y - 10, v_.now_cla)
+                                    is_out = True
+                                else:
+                                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\app_chosun_1.PNG"
+                                    img_array = np.fromfile(full_path, np.uint8)
+                                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                    imgs_ = imgs_set_(10, 350, 900, 670, v_.now_cla, img, 0.85)
+                                    if imgs_ is not None and imgs_ != False:
+                                        print("app_chosun_1...", imgs_)
+                                        click_pos_reg(imgs_.x, imgs_.y, v_.now_cla)
+                                        is_out = True
+
+                                if is_out == True:
+                                    ready = False
+                                    for i in range(20):
+                                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\text_apply.PNG"
+                                        img_array = np.fromfile(full_path, np.uint8)
+                                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                        imgs_ = imgs_set_(340, 740, 580, 800, v_.now_cla, img, 0.8)
+                                        if imgs_ is not None and imgs_ != False:
+                                            print("text_apply", imgs_)
+                                            ready = True
+                                            break
+                                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\start_skip.PNG"
+                                        img_array = np.fromfile(full_path, np.uint8)
+                                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                        imgs_ = imgs_set_(740, 270, 930, 370, v_.now_cla, img, 0.8)
+                                        if imgs_ is not None and imgs_ != False:
+                                            print("start_skip", imgs_)
+                                            ready = True
+                                            break
+                                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\screen_touch_btn.PNG"
+                                        img_array = np.fromfile(full_path, np.uint8)
+                                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                        imgs_ = imgs_set_(360, 630, 560, 700, v_.now_cla, img, 0.8)
+                                        if imgs_ is not None and imgs_ != False:
+                                            print("screen_touch_btn", imgs_)
+                                            ready = True
+                                            break
+                                        time.sleep(1)
+                                    if ready == True:
+                                        result_schedule = myQuest_play_check(v_.now_cla, "main_check_ready")
+                                        character_id = result_schedule[0][1]
+                                        game_start_screen(v_.now_cla, character_id)
+                                    else:
+
+                                        why = str(v_.this_game) +" 꺼진게 확실하다"
+                                        print(why)
+                                        line_to_me(v_.now_cla, why)
+
+                                        dir_path = "C:\\my_games\\load\\" + str(v_.game_folder)
+                                        file_path = dir_path + "\\start.txt"
+                                        # cla.txt
+                                        cla_data = str(v_.now_cla) + "cla"
+                                        file_path2 = dir_path + "\\" + cla_data + ".txt"
+                                        with open(file_path, "w", encoding='utf-8-sig') as file:
+                                            data = 'no'
+                                            file.write(str(data))
+                                            time.sleep(0.2)
+                                        with open(file_path2, "w", encoding='utf-8-sig') as file:
+                                            data = v_.now_cla
+                                            file.write(str(data))
+                                            time.sleep(0.2)
+                                        os.execl(sys.executable, sys.executable, *sys.argv)
 
 
                 time.sleep(5)

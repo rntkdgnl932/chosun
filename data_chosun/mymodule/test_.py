@@ -47,14 +47,14 @@ def go_test():
 
         # jadong_spot(cla)
 
-        attack_check(cla)
+        # attack_check(cla)
 
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\get_item\\mission_point_1.PNG"
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\hp_zero.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(505, 325, 535, 355, cla, img, 0.85)
+        imgs_ = imgs_set_(70, 288, 140, 310, cla, img, 0.9)
         if imgs_ is not None and imgs_ != False:
-            print("mission_point_1", imgs_)
+            print("hp_zero", imgs_)
 
         # a = 215
         # b = 312
