@@ -403,6 +403,7 @@ def attack_on(cla):
                         time.sleep(0.5)
 
             if is_attack == False:
+                result_juljun = juljun_check(cla)
                 if result_juljun == False:
                     clean_screen(cla)
                     click_pos_2(885, 655, cla)
