@@ -24,6 +24,10 @@ def game_check(cla):
         is_start = False
 
         print("game_check")
+
+        print("game_check before all_confirms")
+        all_confirms(cla)
+
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\server_out_1.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
