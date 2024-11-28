@@ -39,10 +39,12 @@ def clean_screen_start(cla):
     import numpy as np
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2, imgs_set_for
-    from action_chosun import out_check, all_confirms
+    from action_chosun import out_check, all_confirms, juljun_off
 
     try:
         print("clean_screen_start")
+
+        juljun_off(cla)
 
         all_confirms(cla)
 

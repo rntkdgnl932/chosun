@@ -35,26 +35,30 @@ def potion_check(cla):
             c = 223
             d = 324
 
-            for i in range(10):
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_num\\" + str(i) + ".PNG"
-                img_array = np.fromfile(full_path, np.uint8)
-                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(a, b, c, d, cla, img, 0.85)
-                if imgs_ is not None and imgs_ != False:
-                    print("potion_num => ", str(i), imgs_)
-                    is_potion = True
-                    v_.potion_count = 0
-                    break
-                else:
+            for count in range(4):
+                print("potion_check count =>", count)
+                for i in range(10):
                     full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_num\\" + str(i) + ".PNG"
                     img_array = np.fromfile(full_path, np.uint8)
                     img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                    imgs_ = imgs_set_(a, b, c, d, cla, img, 0.85)
+                    imgs_ = imgs_set_(a, b, c, d, cla, img, 0.8)
                     if imgs_ is not None and imgs_ != False:
                         print("potion_num => ", str(i), imgs_)
                         is_potion = True
                         v_.potion_count = 0
                         break
+                    else:
+                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_num\\" + str(i) + ".PNG"
+                        img_array = np.fromfile(full_path, np.uint8)
+                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                        imgs_ = imgs_set_(a, b, c, d, cla, img, 0.8)
+                        if imgs_ is not None and imgs_ != False:
+                            print("potion_num => ", str(i), imgs_)
+                            is_potion = True
+                            v_.potion_count = 0
+                            break
+                if is_potion == True:
+                    break
             if is_potion == False:
                 v_.potion_count += 1
                 if v_.potion_count > 11:

@@ -343,6 +343,81 @@ def attack_check(cla):
     except Exception as e:
         print(e)
 
+
+def attack_on(cla):
+    import numpy as np
+    import cv2
+
+    from function_game import imgs_set_, click_pos_2, text_check_get
+    from clean_screen_chosun import clean_screen
+    try:
+
+        print("attack_on")
+
+        clean_screen(cla)
+        click_pos_2(885, 655, cla)
+
+        attack_start = False
+        attack_start_count = 0
+
+        while attack_start is False:
+            attack_start_count += 1
+            if attack_start_count > 10:
+                attack_start = True
+
+            is_attack = False
+
+            result_out = out_check(cla, "attack_on")
+
+            if result_out == True:
+
+
+                for i in range(10):
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\attack_check\\auto_on.PNG"
+                    img_array = np.fromfile(full_path, np.uint8)
+                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                    imgs_ = imgs_set_(420, 580, 500, 620, cla, img, 0.7)
+                    if imgs_ is not None and imgs_ != False:
+                        print("auto_on", imgs_)
+                        is_attack = True
+                        break
+                    time.sleep(0.5)
+            else:
+                result_juljun = juljun_check(cla)
+                if result_juljun == True:
+                    print("금화 등 비교하기")
+
+                    result_text_1 = text_check_get(825, 446, 888, 460, cla)
+                    # print("result_text_1", result_text_1)
+
+                    for i in range(20):
+                        result_text_2 = text_check_get(825, 446, 888, 460, cla)
+                        # print("result_text_2", result_text_2)
+                        if result_text_1 != result_text_2:
+                            print("사냥중이다.", result_text_1)
+                            print("사냥중이다.", result_text_2)
+                            is_attack = True
+                            break
+                        else:
+                            print("사냥중인지 체크중")
+                        time.sleep(0.5)
+
+            if is_attack == False:
+                if result_juljun == False:
+                    clean_screen(cla)
+                    click_pos_2(885, 655, cla)
+                else:
+                    juljun_off(cla)
+                    click_pos_2(885, 655, cla)
+            else:
+                attack_start = True
+
+            QTest.qWait(1000)
+
+    except Exception as e:
+        print(e)
+
+
 def juljun_check(cla):
     import numpy as np
     import cv2

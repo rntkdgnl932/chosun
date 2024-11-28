@@ -49,13 +49,27 @@ def go_test():
 
         # attack_check(cla)
 
+        a = 215
+        b = 312
+        c = 223
+        d = 324
+
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\hp_zero.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
         imgs_ = imgs_set_(70, 288, 140, 310, cla, img, 0.9)
         if imgs_ is not None and imgs_ != False:
             print("hp_zero", imgs_)
-
+        for i in range(10):
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_num\\" + str(i) + ".PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(a, b, c, d, cla, img, 0.85)
+            if imgs_ is not None and imgs_ != False:
+                print("potion_num => ", str(i), imgs_)
+                is_potion = True
+                v_.potion_count = 0
+                break
         # a = 215
         # b = 312
         # c = 223
