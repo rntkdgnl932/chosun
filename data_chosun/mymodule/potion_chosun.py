@@ -57,7 +57,7 @@ def potion_check(cla):
                         break
             if is_potion == False:
                 v_.potion_count += 1
-                if v_.potion_count > 5:
+                if v_.potion_count > 11:
                     potion_buy(cla)
 
         # 절전모드일때와 절전모드 아닐때 구분할 필요는 없네
