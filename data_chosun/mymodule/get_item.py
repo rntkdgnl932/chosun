@@ -14,9 +14,10 @@ def get_item_start(cla):
     import numpy as np
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2
-
+    from potion_chosun import potion_buy
     try:
         print("get_item_start")
+        potion_buy(cla)
         get_post(cla)
         get_event(cla)
         get_upjuk(cla)
