@@ -16,7 +16,7 @@ def potion_check(cla):
     from function_game import imgs_set_, click_pos_reg, click_pos_2
     from action_chosun import juljun_check, out_check
     try:
-        print("potion_check")
+        print("potion_check => v_.potion_count : ", v_.potion_count)
 
         is_potion = True
 
