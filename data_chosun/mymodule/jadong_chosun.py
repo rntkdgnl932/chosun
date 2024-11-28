@@ -31,6 +31,7 @@ def jadong_start(cla):
             else:
                 jadong_spot(cla)
         else:
+            all_confirms(cla)
             jadong_spot(cla)
 
 
@@ -52,7 +53,7 @@ def jadong_spot(cla):
         print("jadong_spot")
 
         juljun_off(cla)
-        
+
 
         spot = False
         spot_count = 0
