@@ -157,7 +157,7 @@ def go_maul(cla):
     import numpy as np
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2
-    from action_chosun import out_check, game_loading_check, game_loading
+    from action_chosun import out_check, game_loading_check, game_loading, all_confirms
     from clean_screen_chosun import clean_screen
     try:
         print("go_maul")
@@ -168,7 +168,7 @@ def go_maul(cla):
         maul_count = 0
         while maul_ is False:
             maul_count += 1
-            if maul_count > 10:
+            if maul_count > 13:
                 maul_ = True
 
 
@@ -179,59 +179,80 @@ def go_maul(cla):
             imgs_ = imgs_set_(30, 330, 110, 365, cla, img, 0.85)
             if imgs_ is not None and imgs_ != False:
                 print("map_all", imgs_)
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\jabhwa_btn.PNG"
+
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\title\\dungeon_special.PNG"
                 img_array = np.fromfile(full_path, np.uint8)
                 img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(650, 380, 850, 750, cla, img, 0.85)
+                imgs_ = imgs_set_(750, 270, 920, 350, cla, img, 0.85)
                 if imgs_ is not None and imgs_ != False:
-                    print("jabhwa_btn", imgs_)
-                    click_pos_reg(imgs_.x, imgs_.y, cla)
-                    time.sleep(0.5)
+                    print("dungeon_special", imgs_)
+                    clean_screen(cla)
 
-                    # 그다음 로딩화면
                     for i in range(10):
                         result_loading = game_loading_check(cla)
                         if result_loading == True:
                             game_loading(cla)
-                            maul_ = True
-                            buy_ready = True
                             break
                         else:
-                            # 이동 누르기
-                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\move_btn.PNG"
-                            img_array = np.fromfile(full_path, np.uint8)
-                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                            imgs_ = imgs_set_(720, 750, 800, 790, cla, img, 0.85)
-                            if imgs_ is not None and imgs_ != False:
-                                print("move_btn", imgs_)
-                                click_pos_reg(imgs_.x, imgs_.y, cla)
-                        time.sleep(0.5)
+                            result_confirm = all_confirms(cla)
+                            if result_confirm == False:
+                                click_pos_2(630, 350, cla)
+                        QTest.qWait(1000)
+
                 else:
-                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\maul_btn.PNG"
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\jabhwa_btn.PNG"
                     img_array = np.fromfile(full_path, np.uint8)
                     img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                    imgs_ = imgs_set_(650, 380, 700, 750, cla, img, 0.85)
+                    imgs_ = imgs_set_(650, 380, 850, 750, cla, img, 0.85)
                     if imgs_ is not None and imgs_ != False:
-                        print("maul_btn", imgs_)
+                        print("jabhwa_btn", imgs_)
                         click_pos_reg(imgs_.x, imgs_.y, cla)
+                        time.sleep(0.5)
+
+                        # 그다음 로딩화면
+                        for i in range(10):
+                            result_loading = game_loading_check(cla)
+                            if result_loading == True:
+                                game_loading(cla)
+                                maul_ = True
+                                buy_ready = True
+                                break
+                            else:
+                                # 이동 누르기
+                                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\move_btn.PNG"
+                                img_array = np.fromfile(full_path, np.uint8)
+                                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                imgs_ = imgs_set_(720, 750, 800, 790, cla, img, 0.85)
+                                if imgs_ is not None and imgs_ != False:
+                                    print("move_btn", imgs_)
+                                    click_pos_reg(imgs_.x, imgs_.y, cla)
+                            time.sleep(0.5)
                     else:
-                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\maul_1.PNG"
+                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\maul_btn.PNG"
                         img_array = np.fromfile(full_path, np.uint8)
                         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                        imgs_ = imgs_set_(50, 360, 900, 800, cla, img, 0.85)
+                        imgs_ = imgs_set_(650, 380, 700, 750, cla, img, 0.85)
                         if imgs_ is not None and imgs_ != False:
-                            print("maul_1", imgs_)
+                            print("maul_btn", imgs_)
                             click_pos_reg(imgs_.x, imgs_.y, cla)
                         else:
-                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\maul_2.PNG"
+                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\maul_1.PNG"
                             img_array = np.fromfile(full_path, np.uint8)
                             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
                             imgs_ = imgs_set_(50, 360, 900, 800, cla, img, 0.85)
                             if imgs_ is not None and imgs_ != False:
-                                print("maul_2", imgs_)
+                                print("maul_1", imgs_)
                                 click_pos_reg(imgs_.x, imgs_.y, cla)
                             else:
-                                click_pos_2(70, 350, cla)
+                                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\maul_2.PNG"
+                                img_array = np.fromfile(full_path, np.uint8)
+                                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                imgs_ = imgs_set_(50, 360, 900, 800, cla, img, 0.85)
+                                if imgs_ is not None and imgs_ != False:
+                                    print("maul_2", imgs_)
+                                    click_pos_reg(imgs_.x, imgs_.y, cla)
+                                else:
+                                    click_pos_2(70, 350, cla)
 
             else:
                 result_out = out_check(cla, "go_maul")

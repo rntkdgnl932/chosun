@@ -945,7 +945,15 @@ def all_confirms(cla):
                             print("download_confirm", imgs_)
                             click_pos_reg(imgs_.x, imgs_.y, cla)
                             is_confirm = True
-
+                        else:
+                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dungeon\\dun_in_confirm.PNG"
+                            img_array = np.fromfile(full_path, np.uint8)
+                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                            imgs_ = imgs_set_(480, 690, 560, 730, cla, img, 0.85)
+                            if imgs_ is not None and imgs_ != False:
+                                print("dun_in_confirm", imgs_)
+                                click_pos_reg(imgs_.x, imgs_.y, cla)
+                                is_confirm = True
         return is_confirm
     except Exception as e:
         print(e)

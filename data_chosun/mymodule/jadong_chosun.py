@@ -17,6 +17,7 @@ def jadong_start(cla):
     from action_chosun import out_check, juljun_off, all_confirms, game_loading_check, game_loading, attack_check, juljun_on, juljun_check, attack_on
     from potion_chosun import potion_check, potion_buy
     from dead_die import dead_check, dead_recovery
+    from boonhae_collection import collection_start, boonhae_start
 
     my_spot = "c:\\my_games\\chosun\\data_chosun\\imgs\\jadong\\spot"
     file_list = os.listdir(my_spot)
@@ -34,6 +35,7 @@ def jadong_start(cla):
             imgs_ = imgs_set_(330, 360, 600, 430, cla, img, 0.8)
             if imgs_ is not None and imgs_ != False:
                 print("exceeded_limit", imgs_)
+            #     collection_start, boonhae_start 대기중...
             else:
                 is_spot = False
                 for i in range(len(file_list)):

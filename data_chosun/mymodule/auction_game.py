@@ -56,4 +56,82 @@ def mine_check(cla):
 
 
 
+def auction_num(cla):
+    import numpy as np
+    import cv2
+
+    from function_game import imgs_set_, text_check_get_reg, in_number_check, int_put_, change_number
+    try:
+
+        # text_check_get(365, 520, 433, 533, cla)
+
+        is_point = False
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\point.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(365, 520, 433, 533, cla, img, 0.85)
+        if imgs_ is not None and imgs_ != False:
+            print("point", imgs_)
+            is_point = True
+            point_x = imgs_.x
+
+        x_reg_1 = 10000
+        x_reg_2 = 0
+        if is_point == True:
+            print("소수점 앞 자리, 가장 앞에 숫자 찾기")
+            for i in range(10):
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(365, 512, point_x, 533, cla, img, 0.85)
+                if imgs_ is not None and imgs_ != False:
+                    print(str(i), imgs_)
+                    if x_reg_1 > imgs_.x:
+                        x_reg_1 = imgs_.x
+            for i in range(10):
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(x_reg_1 - 4, 512, point_x, 533, cla, img, 0.85)
+                if imgs_ is not None and imgs_ != False:
+                    print(str(i), imgs_)
+                    if x_reg_1 > imgs_.x:
+                        x_reg_1 = imgs_.x
+
+            print("소수점 뒷 자리, 가장 앞에 숫자 찾기")
+            for i in range(10):
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(point_x, 512, 433, 533, cla, img, 0.85)
+                if imgs_ is not None and imgs_ != False:
+                    print(str(i), imgs_)
+                    if x_reg_1 > imgs_.x:
+                        x_reg_1 = imgs_.x
+        else:
+            print("소수점 없을 경우 가장 앞에 숫자 및 가장 뒷 숫자 찾기")
+
+            for i in range(10):
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(365, 512, 433, 533, cla, img, 0.85)
+                if imgs_ is not None and imgs_ != False:
+                    print(str(i), imgs_)
+                    if x_reg_1 > imgs_.x:
+                        x_reg_1 = imgs_.x
+            for i in range(10):
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(x_reg_1 - 4, 512, x_reg_1 + 4, 533, cla, img, 0.85)
+                if imgs_ is not None and imgs_ != False:
+                    print(str(i), imgs_)
+                    if x_reg_1 > imgs_.x:
+                        x_reg_1 = imgs_.x
+
+        print("x_reg", x_reg_1)
+
+    except Exception as e:
+        print(e)
 
