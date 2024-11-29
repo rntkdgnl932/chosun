@@ -40,7 +40,7 @@ def clean_screen_start(cla):
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2, imgs_set_for
     from action_chosun import out_check, all_confirms, juljun_off
-    from dead_die import dead_check
+    from dead_die import dead_check, dead_recovery
     from potion_chosun import potion_buy
 
     try:
@@ -58,13 +58,7 @@ def clean_screen_start(cla):
             result= dead_check(cla, "clean_screen_start")
             if result == True:
                 potion_buy(cla)
-
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\boohwal_btn.PNG"
-        img_array = np.fromfile(full_path, np.uint8)
-        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(300, 700, 800, 800, cla, img, 0.85)
-        if imgs_ is not None and imgs_ != False:
-            dead_check(cla, "clean_screen")
+                dead_recovery(cla)
 
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\menu_open\\menu_setting.PNG"
         img_array = np.fromfile(full_path, np.uint8)

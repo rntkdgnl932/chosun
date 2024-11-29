@@ -54,7 +54,7 @@ from test_ import go_test
 
 from tuto_chosun import tuto_start
 from action_chosun import game_check
-from dead_die import dead_check
+from dead_die import dead_check, dead_recovery
 from potion_chosun import potion_buy
 from get_item import get_item_start
 from jadong_chosun import jadong_start
@@ -3875,6 +3875,8 @@ class game_Playing(QThread):
                                 result_dead = dead_check(v_.now_cla, result_schedule_)
                                 if result_dead == True:
                                     potion_buy(v_.now_cla)
+                                    dead_recovery(v_.now_cla)
+
 
 
                                 # 일시적인 이벤트(5000)

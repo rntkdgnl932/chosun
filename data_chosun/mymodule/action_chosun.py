@@ -261,6 +261,41 @@ def menu_open(cla):
     except Exception as e:
         print(e)
 
+
+def bag_open(cla):
+    import numpy as np
+    import cv2
+    from clean_screen_chosun import clean_screen
+    from function_game import imgs_set_, click_pos_2
+    try:
+
+        print("bag_open")
+
+        for i in range(5):
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\bag_open\\bag_boonhae_btn.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(715, 715, 820, 770, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                break
+            else:
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\menu_open\\menu_setting.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(840, 730, 920, 800, cla, img, 0.85)
+                if imgs_ is not None and imgs_ != False:
+                    print("bag_open : menu_setting", imgs_)
+                    click_pos_2(760, 300, cla)
+                else:
+                    menu_open(cla)
+            QTest.qWait(1000)
+
+
+
+    except Exception as e:
+        print(e)
+
+
 def out_check(cla, data):
     import numpy as np
     import cv2
@@ -629,6 +664,24 @@ def all_confirms(cla):
                 print("move_notisfy_confirm", imgs_)
                 click_pos_reg(imgs_.x, imgs_.y, cla)
                 is_confirm = True
+            else:
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\all_confirms\\boonhae_confirm.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
+                if imgs_ is not None and imgs_ != False:
+                    print("boonhae_confirm", imgs_)
+                    click_pos_reg(imgs_.x, imgs_.y, cla)
+                    is_confirm = True
+                else:
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\all_confirms\\boonhae_result_confirm.PNG"
+                    img_array = np.fromfile(full_path, np.uint8)
+                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                    imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
+                    if imgs_ is not None and imgs_ != False:
+                        print("boonhae_result_confirm", imgs_)
+                        click_pos_reg(imgs_.x, imgs_.y, cla)
+                        is_confirm = True
 
         return is_confirm
     except Exception as e:

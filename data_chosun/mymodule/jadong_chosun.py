@@ -15,8 +15,8 @@ def jadong_start(cla):
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2
     from action_chosun import out_check, juljun_off, all_confirms, game_loading_check, game_loading, attack_check, juljun_on, juljun_check, attack_on
-    from potion_chosun import potion_check
-    from dead_die import dead_check
+    from potion_chosun import potion_check, potion_buy
+    from dead_die import dead_check, dead_recovery
 
     my_spot = "c:\\my_games\\chosun\\data_chosun\\imgs\\jadong\\spot"
     file_list = os.listdir(my_spot)
@@ -27,29 +27,40 @@ def jadong_start(cla):
         # 절전모드인지 확인
         result_juljun = juljun_check(cla)
         if result_juljun == True:
-            is_spot = False
-            for i in range(len(file_list)):
-                result_file_list = file_list[i].split(".")
-                read_data = result_file_list[0]
-
-                # 종류 쭈욱 시작
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\jadong\\spot\\" + str(read_data) + ".PNG"
-                img_array = np.fromfile(full_path, np.uint8)
-                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(750, 130, 950, 1000, cla, img, 0.8)
-                if imgs_ is not None and imgs_ != False:
-                    print("spot...", str(read_data), imgs_)
-                    is_spot = True
-            if is_spot == False:
-                jadong_spot(cla)
+            # 소지품 개수 제한 초과
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\jadong\\juljun_check\\exceeded_limit.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(330, 360, 600, 430, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("exceeded_limit", imgs_)
             else:
-                result_attack = attack_check(cla)
-                if result_attack == True:
-                    potion_check(cla)
-                    dead_check(cla, "자동사냥")
+                is_spot = False
+                for i in range(len(file_list)):
+                    result_file_list = file_list[i].split(".")
+                    read_data = result_file_list[0]
+
+                    # 종류 쭈욱 시작
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\jadong\\spot\\" + str(read_data) + ".PNG"
+                    img_array = np.fromfile(full_path, np.uint8)
+                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                    imgs_ = imgs_set_(750, 130, 950, 1000, cla, img, 0.8)
+                    if imgs_ is not None and imgs_ != False:
+                        print("spot...", str(read_data), imgs_)
+                        is_spot = True
+                if is_spot == False:
+                    jadong_spot(cla)
                 else:
-                    attack_on(cla)
-                    juljun_on(cla)
+                    result_attack = attack_check(cla)
+                    if result_attack == True:
+                        potion_check(cla)
+                        result_dead = dead_check(cla, "자동사냥")
+                        if result_dead == True:
+                            potion_buy(cla)
+                            dead_recovery(cla)
+                    else:
+                        attack_on(cla)
+                        juljun_on(cla)
         else:
             all_confirms(cla)
             juljun_on(cla)

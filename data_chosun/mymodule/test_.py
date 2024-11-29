@@ -42,34 +42,38 @@ def go_test():
     from potion_chosun import potion_buy
     from get_item import get_item_start
     from jadong_chosun import jadong_spot
+    from boonhae_collection import collection_start, boonhae_start
+    from dead_die import dead_recovery
 
     try:
 
-        # jadong_spot(cla)
+        # full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\gold_checked.PNG"
+        # img_array = np.fromfile(full_path, np.uint8)
+        # img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        # imgs_ = imgs_set_(225, 690, 270, 730, cla, img, 0.8)
+        # if imgs_ is not None and imgs_ != False:
+        #     print("gold_checked", imgs_)
+
+
+
+
+        dead_recovery(cla)
 
         # attack_check(cla)
 
-        a = 215
-        b = 312
-        c = 223
-        d = 324
-
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\hp_zero.PNG"
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\all_confirms\\notify_confirm.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(70, 288, 140, 310, cla, img, 0.9)
+        imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
         if imgs_ is not None and imgs_ != False:
-            print("hp_zero", imgs_)
-        for i in range(10):
-            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\potion\\potion_num\\" + str(i) + ".PNG"
+            print("notify_confirm", imgs_)
+        else:
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\tuto\\tuto_start\\move_notisfy_confirm.PNG"
             img_array = np.fromfile(full_path, np.uint8)
             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-            imgs_ = imgs_set_(a, b, c, d, cla, img, 0.85)
+            imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
             if imgs_ is not None and imgs_ != False:
-                print("potion_num => ", str(i), imgs_)
-                is_potion = True
-                v_.potion_count = 0
-                break
+                print("move_notisfy_confirm", imgs_)
         # a = 215
         # b = 312
         # c = 223
