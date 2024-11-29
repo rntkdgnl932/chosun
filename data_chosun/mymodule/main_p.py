@@ -53,7 +53,7 @@ from stop_event18 import _stop_please
 from test_ import go_test
 
 from tuto_chosun import tuto_start
-from action_chosun import game_check
+from action_chosun import game_check, all_confirms
 from dead_die import dead_check, dead_recovery
 from potion_chosun import potion_buy
 from get_item import get_item_start
@@ -3945,6 +3945,7 @@ class game_Playing(QThread):
 
                                 if is_out == True:
                                     ready = False
+                                    update = False
                                     for i in range(20):
                                         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\text_apply.PNG"
                                         img_array = np.fromfile(full_path, np.uint8)
@@ -3970,11 +3971,71 @@ class game_Playing(QThread):
                                             print("screen_touch_btn", imgs_)
                                             ready = True
                                             break
+                                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\update_need.PNG"
+                                        img_array = np.fromfile(full_path, np.uint8)
+                                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                        imgs_ = imgs_set_(350, 500, 520, 570, v_.now_cla, img, 0.8)
+                                        if imgs_ is not None and imgs_ != False:
+                                            print("update_need", imgs_)
+                                            update = True
+                                            break
                                         time.sleep(1)
                                     if ready == True:
                                         result_schedule = myQuest_play_check(v_.now_cla, "main_check_ready")
                                         character_id = result_schedule[0][1]
                                         game_start_screen(v_.now_cla, character_id)
+                                    elif update == True:
+                                        print("update_need", imgs_)
+                                        for i in range(30):
+                                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\play_btn.PNG"
+                                            img_array = np.fromfile(full_path, np.uint8)
+                                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                            imgs_ = imgs_set_(40, 520, 140, 570, v_.now_cla, img, 0.8)
+                                            if imgs_ is not None and imgs_ != False:
+                                                print("play_btn", imgs_)
+                                                break
+                                            else:
+                                                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\im_delete.PNG"
+                                                img_array = np.fromfile(full_path, np.uint8)
+                                                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                                imgs_ = imgs_set_(40, 520, 140, 570, v_.now_cla, img, 0.8)
+                                                if imgs_ is not None and imgs_ != False:
+                                                    print("im_delete", imgs_)
+                                                    for p in range(60):
+                                                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\play_btn.PNG"
+                                                        img_array = np.fromfile(full_path, np.uint8)
+                                                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                                        imgs_ = imgs_set_(40, 520, 140, 570, v_.now_cla, img, 0.8)
+                                                        if imgs_ is not None and imgs_ != False:
+
+                                                            break
+                                                        else:
+                                                            print("업데이트 중", p)
+                                                        time.sleep(1)
+                                                else:
+                                                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\update_btn.PNG"
+                                                    img_array = np.fromfile(full_path, np.uint8)
+                                                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                                    imgs_ = imgs_set_(40, 520, 140, 570, v_.now_cla, img, 0.8)
+                                                    if imgs_ is not None and imgs_ != False:
+                                                        print("update_btn", imgs_)
+                                                        click_pos_reg(imgs_.x, imgs_.y, v_.now_cla)
+                                                    else:
+                                                        result_confirm = all_confirms(v_.now_cla)
+                                                        if result_confirm == True:
+                                                            time.sleep(3)
+                                            QTest.qWait(1000)
+                                        for i in range(10):
+                                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\play_btn.PNG"
+                                            img_array = np.fromfile(full_path, np.uint8)
+                                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                            imgs_ = imgs_set_(40, 520, 140, 570, v_.now_cla, img, 0.8)
+                                            if imgs_ is not None and imgs_ != False:
+                                                print("play_btn", imgs_)
+                                                click_pos_reg(imgs_.x, imgs_.y, v_.now_cla)
+                                            else:
+                                                break
+                                            QTest.qWait(1000)
                                     else:
 
                                         why = str(v_.this_game) +" 꺼진게 확실하다"
