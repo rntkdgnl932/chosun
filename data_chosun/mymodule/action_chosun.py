@@ -137,6 +137,167 @@ def game_check(cla):
     except Exception as e:
         print(e)
 
+
+def game_out_check(cla):
+    import numpy as np
+    import cv2
+
+    from function_game import imgs_set_, click_pos_reg
+    from massenger import line_to_me
+    from character_select_and_game_start import game_start_screen
+    from schedule import myQuest_play_check
+    try:
+
+
+        print("game_out_check")
+        is_out = False
+
+        print("자동으로 켜보고 안되면 알림하기...")
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\app_chosun_1.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(10, 350, 900, 670, cla, img, 0.85)
+        if imgs_ is not None and imgs_ != False:
+            print("app_chosun_1...", imgs_)
+            click_pos_reg(imgs_.x, imgs_.y - 10, cla)
+            is_out = True
+        else:
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\app_chosun_1.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(10, 350, 900, 670, cla, img, 0.85)
+            if imgs_ is not None and imgs_ != False:
+                print("app_chosun_1...", imgs_)
+                click_pos_reg(imgs_.x, imgs_.y, cla)
+                is_out = True
+
+        return is_out
+
+    except Exception as e:
+        print(e)
+
+
+def game_out_check_after(cla):
+    import numpy as np
+    import cv2
+
+    from function_game import imgs_set_, click_pos_reg
+    from massenger import line_to_me
+    from character_select_and_game_start import game_start_screen
+    from schedule import myQuest_play_check
+    try:
+
+        all_False = True
+        print("game_out_check_after")
+        ready = False
+        update = False
+        for i in range(20):
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\text_apply.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(340, 740, 580, 800, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("text_apply", imgs_)
+                ready = True
+                break
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\start_skip.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(740, 270, 930, 370, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("start_skip", imgs_)
+                ready = True
+                break
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\screen_touch_btn.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(360, 630, 560, 700, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("screen_touch_btn", imgs_)
+                ready = True
+                break
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\download.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(400, 740, 520, 780, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("download", imgs_)
+                ready = True
+                break
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\update_need.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(350, 500, 520, 570, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("update_need", imgs_)
+                update = True
+                break
+            time.sleep(1)
+        if ready == True:
+            all_False = False
+            result_schedule = myQuest_play_check(cla, "main_check_ready")
+            character_id = result_schedule[0][1]
+            game_start_screen(cla, character_id)
+        elif update == True:
+            all_False = False
+            print("update_need")
+            for i in range(30):
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\play_btn.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(40, 520, 140, 570, cla, img, 0.8)
+                if imgs_ is not None and imgs_ != False:
+                    print("play_btn", imgs_)
+                    break
+                else:
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\im_delete.PNG"
+                    img_array = np.fromfile(full_path, np.uint8)
+                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                    imgs_ = imgs_set_(40, 520, 140, 570, cla, img, 0.8)
+                    if imgs_ is not None and imgs_ != False:
+                        print("im_delete", imgs_)
+                        for p in range(60):
+                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\play_btn.PNG"
+                            img_array = np.fromfile(full_path, np.uint8)
+                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                            imgs_ = imgs_set_(40, 520, 140, 570, cla, img, 0.8)
+                            if imgs_ is not None and imgs_ != False:
+
+                                break
+                            else:
+                                print("업데이트 중", p)
+                            time.sleep(1)
+                    else:
+                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\update_btn.PNG"
+                        img_array = np.fromfile(full_path, np.uint8)
+                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                        imgs_ = imgs_set_(40, 520, 140, 570, cla, img, 0.8)
+                        if imgs_ is not None and imgs_ != False:
+                            print("update_btn", imgs_)
+                            click_pos_reg(imgs_.x, imgs_.y, cla)
+                        else:
+                            result_confirm = all_confirms(cla)
+                            if result_confirm == True:
+                                time.sleep(3)
+                QTest.qWait(1000)
+            for i in range(10):
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\play_btn.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(40, 520, 140, 570, cla, img, 0.8)
+                if imgs_ is not None and imgs_ != False:
+                    print("play_btn", imgs_)
+                    click_pos_reg(imgs_.x, imgs_.y, cla)
+                else:
+                    break
+                QTest.qWait(1000)
+        else:
+            print("all_False", all_False)
+
+        return all_False
+    except Exception as e:
+        print(e)
+
 def skip_check(cla):
     import numpy as np
     import cv2
@@ -205,7 +366,7 @@ def skip_start(cla):
             full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\skip_1.PNG"
             img_array = np.fromfile(full_path, np.uint8)
             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-            imgs_ = imgs_set_(800, 580, 900, 650, cla, img, 0.85)
+            imgs_ = imgs_set_(800, 580, 900, 650, cla, img, 0.8)
             if imgs_ is not None and imgs_ != False:
                 print("skip_1", imgs_)
                 click_pos_reg(imgs_.x, imgs_.y, cla)
@@ -238,7 +399,7 @@ def skip_start(cla):
                         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\next_1.PNG"
                         img_array = np.fromfile(full_path, np.uint8)
                         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                        imgs_ = imgs_set_(800, 750, 910, 800, cla, img, 0.85)
+                        imgs_ = imgs_set_(800, 750, 910, 800, cla, img, 0.8)
                         if imgs_ is not None and imgs_ != False:
                             print("next_1", imgs_)
                             click_pos_reg(imgs_.x, imgs_.y, cla)
@@ -253,7 +414,7 @@ def skip_start(cla):
                                 full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\tuto\\tuto_start\\move_notisfy_confirm.PNG"
                                 img_array = np.fromfile(full_path, np.uint8)
                                 img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                                imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
+                                imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.8)
                                 if imgs_ is not None and imgs_ != False:
                                     print("move_notisfy_confirm", imgs_)
                                     click_pos_reg(imgs_.x, imgs_.y, cla)
@@ -408,6 +569,41 @@ def attack_check(cla):
                     else:
                         print("사냥중인지 체크중")
                     time.sleep(0.5)
+
+                if is_attack == False:
+                    v_.jadong_count += 1
+                    if v_.jadong_count > 7:
+                        v_.jadong_count = 0
+                        print("재시작 해버리기")
+                        for i in range(20):
+                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_title_1.PNG"
+                            img_array = np.fromfile(full_path, np.uint8)
+                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                            imgs_ = imgs_set_(0, 0, 960, 1030, cla, img, 0.8)
+                            if imgs_ is not None and imgs_ != False:
+                                print("game_title_1", imgs_)
+                                close_x = imgs_.x
+                                close_y = imgs_.y
+                                if 20 > close_y:
+                                    close_y = 20
+                                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_close_btn.PNG"
+                                img_array = np.fromfile(full_path, np.uint8)
+                                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                imgs_ = imgs_set_(close_x, close_y - 20, close_x + 110, close_y + 20, cla, img, 0.8)
+                                if imgs_ is not None and imgs_ != False:
+                                    print("game_close_btn", imgs_)
+                                    click_pos_reg(imgs_.x, imgs_.y, cla)
+                            else:
+                                result_game_out_check = game_out_check(cla)
+                                if result_game_out_check == True:
+                                    game_out_check_after(cla)
+                                    break
+                            QTest.qWait(1000)
+
+
+
+                else:
+                    v_.jadong_count = 0
 
         return is_attack
 

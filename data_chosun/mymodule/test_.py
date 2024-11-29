@@ -54,40 +54,22 @@ def go_test():
         # if imgs_ is not None and imgs_ != False:
         #     print("gold_checked", imgs_)
 
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\all_confirms\\notify_confirm.PNG"
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_title_1.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
+        imgs_ = imgs_set_(0, 0, 960, 1030, cla, img, 0.8)
         if imgs_ is not None and imgs_ != False:
-            print("notify_confirm", imgs_)
-        else:
-            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\tuto\\tuto_start\\move_notisfy_confirm.PNG"
+            print("game_title_1", imgs_)
+            close_x = imgs_.x
+            close_y = imgs_.y
+            if 20 > close_y:
+                close_y = 20
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_close_btn.PNG"
             img_array = np.fromfile(full_path, np.uint8)
             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-            imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
+            imgs_ = imgs_set_(close_x, close_y - 20, close_x + 110, close_y + 20, cla, img, 0.8)
             if imgs_ is not None and imgs_ != False:
-                print("move_notisfy_confirm", imgs_)
-            else:
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\all_confirms\\boonhae_confirm.PNG"
-                img_array = np.fromfile(full_path, np.uint8)
-                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
-                if imgs_ is not None and imgs_ != False:
-                    print("boonhae_confirm", imgs_)
-                else:
-                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\all_confirms\\boonhae_result_confirm.PNG"
-                    img_array = np.fromfile(full_path, np.uint8)
-                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                    imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
-                    if imgs_ is not None and imgs_ != False:
-                        print("boonhae_result_confirm", imgs_)
-                    else:
-                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\download_confirm.PNG"
-                        img_array = np.fromfile(full_path, np.uint8)
-                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                        imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
-                        if imgs_ is not None and imgs_ != False:
-                            print("download_confirm", imgs_)
+                print("game_close_btn", imgs_)
         # a = 215
         # b = 312
         # c = 223

@@ -6,6 +6,7 @@ now_arduino = "none"
 
 # 해당 게임 관련
 potion_count = 0
+jadong_count = 0
 
 # 게임 및 폴더 관련
 this_game = "chosun"

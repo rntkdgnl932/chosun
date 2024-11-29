@@ -44,15 +44,18 @@ def jadong_start(cla):
                     full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\jadong\\spot\\" + str(read_data) + ".PNG"
                     img_array = np.fromfile(full_path, np.uint8)
                     img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                    imgs_ = imgs_set_(750, 130, 950, 1000, cla, img, 0.8)
+                    imgs_ = imgs_set_(750, 340, 920, 380, cla, img, 0.8)
                     if imgs_ is not None and imgs_ != False:
                         print("spot...", str(read_data), imgs_)
                         is_spot = True
                 if is_spot == False:
                     jadong_spot(cla)
                 else:
+                    # 절전을 한 상태에서 공격하는지 체크해야함.
+                    juljun_on(cla)
                     result_attack = attack_check(cla)
                     if result_attack == True:
+                        v_.jadong_count = 0
                         potion_check(cla)
                         result_dead = dead_check(cla, "자동사냥")
                         if result_dead == True:
@@ -61,6 +64,7 @@ def jadong_start(cla):
                     else:
                         attack_on(cla)
                         juljun_on(cla)
+
         else:
             all_confirms(cla)
             juljun_on(cla)
