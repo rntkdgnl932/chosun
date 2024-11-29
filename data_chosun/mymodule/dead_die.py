@@ -178,9 +178,9 @@ def dead_recovery(cla):
 
 
                         QTest.qWait(1000)
-                    if not_free == True:
-                        why = "경험치 무료복구 없다!!!"
-                        line_to_me(cla, why)
+                    # if not_free == True:
+                    #     why = "경험치 무료복구 없다!!!"
+                    #     line_to_me(cla, why)
 
                 # 두번째
                 click_pos_2(140, 350, cla)
