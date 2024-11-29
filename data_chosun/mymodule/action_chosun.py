@@ -103,6 +103,14 @@ def game_check(cla):
             print("join_ready_title", imgs_)
             is_start = True
 
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\download.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(400, 740, 520, 780, cla, img, 0.8)
+        if imgs_ is not None and imgs_ != False:
+            print("download", imgs_)
+            is_start = True
+
         if is_checked is True:
             line_to_me(cla, why)
             dir_path = "C:\\my_games\\load\\" + str(v_.game_folder)
@@ -582,6 +590,14 @@ def game_loading_check(cla):
             if imgs_ is not None and imgs_ != False:
                 print("loading_2", imgs_)
                 loading = True
+            else:
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\downloading.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(320, 720, 520, 780, cla, img, 0.8)
+                if imgs_ is not None and imgs_ != False:
+                    print("downloading", imgs_)
+                    loading = True
 
         return loading
     except Exception as e:
@@ -630,13 +646,27 @@ def game_loading(cla):
                     if loading_False_count > 0:
                         loading_False_count -= 1
                 else:
-                    loading_False_count += 1
-                    if loading_False_count > 2:
-                        loading = False
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\downloading.PNG"
+                    img_array = np.fromfile(full_path, np.uint8)
+                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                    imgs_ = imgs_set_(320, 720, 520, 780, cla, img, 0.8)
+                    if imgs_ is not None and imgs_ != False:
+                        print("downloading", imgs_)
+                        if loading_count > 0:
+                            print("loading...", loading_count, "초")
+
+                        loading_count += 1
+                        if loading_False_count > 0:
+                            loading_False_count -= 1
+
                     else:
-                        result_out = out_check(cla, "game_loading")
-                        if result_out == True:
+                        loading_False_count += 1
+                        if loading_False_count > 2:
                             loading = False
+                        else:
+                            result_out = out_check(cla, "game_loading")
+                            if result_out == True:
+                                loading = False
 
             time.sleep(1)
 
@@ -691,6 +721,15 @@ def all_confirms(cla):
                         print("boonhae_result_confirm", imgs_)
                         click_pos_reg(imgs_.x, imgs_.y, cla)
                         is_confirm = True
+                    else:
+                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\download_confirm.PNG"
+                        img_array = np.fromfile(full_path, np.uint8)
+                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                        imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
+                        if imgs_ is not None and imgs_ != False:
+                            print("download_confirm", imgs_)
+                            click_pos_reg(imgs_.x, imgs_.y, cla)
+                            is_confirm = True
 
         return is_confirm
     except Exception as e:

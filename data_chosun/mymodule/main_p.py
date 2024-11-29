@@ -3971,6 +3971,14 @@ class game_Playing(QThread):
                                             print("screen_touch_btn", imgs_)
                                             ready = True
                                             break
+                                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\download.PNG"
+                                        img_array = np.fromfile(full_path, np.uint8)
+                                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                        imgs_ = imgs_set_(400, 740, 520, 780, v_.now_cla, img, 0.8)
+                                        if imgs_ is not None and imgs_ != False:
+                                            print("download", imgs_)
+                                            ready = True
+                                            break
                                         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\update_need.PNG"
                                         img_array = np.fromfile(full_path, np.uint8)
                                         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)

@@ -12,7 +12,7 @@ def game_start_screen(cla, character_id):
 
     from function_game import imgs_set_, click_pos_reg, click_pos_2
     from massenger import line_to_me
-
+    from action_chosun import all_confirms, game_loading_check, game_loading
 
     try:
 
@@ -153,6 +153,23 @@ def game_start_screen(cla, character_id):
                         else:
                             game_ready(cla)
                     time.sleep(1)
+
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\download.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(400, 740, 520, 780, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("download", imgs_)
+
+                for i in range(10):
+                    result_loading = game_loading_check(cla)
+                    if result_loading == True:
+                        game_loading(cla)
+                    else:
+                        all_confirms(cla)
+                    time.sleep(1)
+
+
             full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\join_ready_title.PNG"
             img_array = np.fromfile(full_path, np.uint8)
             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
