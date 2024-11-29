@@ -162,6 +162,13 @@ def skip_check(cla):
         if imgs_ is not None and imgs_ != False:
             print("skip_2", imgs_)
             is_skip = True
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\skip_3.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(800, 580, 900, 650, cla, img, 0.8)
+        if imgs_ is not None and imgs_ != False:
+            print("skip_3", imgs_)
+            is_skip = True
 
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\next_1.PNG"
         img_array = np.fromfile(full_path, np.uint8)
@@ -216,28 +223,40 @@ def skip_start(cla):
                     if is_skip_count > 0:
                         is_skip_count -= 1
                 else:
-                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\next_1.PNG"
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\skip_3.PNG"
                     img_array = np.fromfile(full_path, np.uint8)
                     img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                    imgs_ = imgs_set_(800, 750, 910, 800, cla, img, 0.85)
+                    imgs_ = imgs_set_(800, 580, 900, 650, cla, img, 0.8)
                     if imgs_ is not None and imgs_ != False:
-                        print("next_1", imgs_)
+                        print("skip_3", imgs_)
+                        is_skip = True
                         click_pos_reg(imgs_.x, imgs_.y, cla)
                         if is_skip_count > 0:
                             is_skip_count -= 1
                     else:
-                        result_reward = reward(cla)
-                        if result_reward == True:
+
+                        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\skip\\next_1.PNG"
+                        img_array = np.fromfile(full_path, np.uint8)
+                        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                        imgs_ = imgs_set_(800, 750, 910, 800, cla, img, 0.85)
+                        if imgs_ is not None and imgs_ != False:
+                            print("next_1", imgs_)
+                            click_pos_reg(imgs_.x, imgs_.y, cla)
                             if is_skip_count > 0:
                                 is_skip_count -= 1
                         else:
-                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\tuto\\tuto_start\\move_notisfy_confirm.PNG"
-                            img_array = np.fromfile(full_path, np.uint8)
-                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                            imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
-                            if imgs_ is not None and imgs_ != False:
-                                print("move_notisfy_confirm", imgs_)
-                                click_pos_reg(imgs_.x, imgs_.y, cla)
+                            result_reward = reward(cla)
+                            if result_reward == True:
+                                if is_skip_count > 0:
+                                    is_skip_count -= 1
+                            else:
+                                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\tuto\\tuto_start\\move_notisfy_confirm.PNG"
+                                img_array = np.fromfile(full_path, np.uint8)
+                                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                imgs_ = imgs_set_(0, 270, 925, 800, cla, img, 0.85)
+                                if imgs_ is not None and imgs_ != False:
+                                    print("move_notisfy_confirm", imgs_)
+                                    click_pos_reg(imgs_.x, imgs_.y, cla)
             QTest.qWait(500)
 
     except Exception as e:
