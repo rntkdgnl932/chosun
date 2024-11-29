@@ -15,7 +15,7 @@ def dead_check(cla, data):
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2
     from potion_chosun import potion_buy
-    from action_chosun import game_loading_check, game_loading, juljun_off
+    from action_chosun import game_loading_check, game_loading, juljun_off, skip_start
     from schedule import myQuest_play_check, myQuest_play_add
 
     try:
@@ -47,8 +47,13 @@ def dead_check(cla, data):
         imgs_ = imgs_set_(300, 700, 800, 800, cla, img, 0.85)
         if imgs_ is not None and imgs_ != False:
             print("boohwal_btn", imgs_)
+
+            skip_start(cla)
+
             click_pos_reg(imgs_.x, imgs_.y, cla)
             is_dead = True
+
+
 
             for i in range(10):
                 full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\boohwal_btn.PNG"
