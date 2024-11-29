@@ -35,6 +35,8 @@ def jadong_start(cla):
             imgs_ = imgs_set_(330, 360, 600, 430, cla, img, 0.8)
             if imgs_ is not None and imgs_ != False:
                 print("exceeded_limit", imgs_)
+                collection_start(cla)
+                boonhae_start(cla)
             #     collection_start, boonhae_start 대기중...
             else:
                 is_spot = False
