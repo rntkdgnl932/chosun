@@ -161,12 +161,14 @@ def game_start_screen(cla, character_id):
             if imgs_ is not None and imgs_ != False:
                 print("download", imgs_)
 
+
                 for i in range(10):
-                    result_loading = game_loading_check(cla)
-                    if result_loading == True:
-                        game_loading(cla)
-                    else:
-                        all_confirms(cla)
+                    result_confirm = all_confirms(cla)
+                    if result_confirm == False:
+                        result_loading = game_loading_check(cla)
+                        if result_loading == True:
+                            game_loading(cla)
+                            break
                     time.sleep(1)
 
 
