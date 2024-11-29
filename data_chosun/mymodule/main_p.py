@@ -59,6 +59,7 @@ from potion_chosun import potion_buy
 from get_item import get_item_start
 from jadong_chosun import jadong_start
 from character_select_and_game_start import game_start_screen
+from stop_event18 import _stop_please
 
 from server import game_start
 import variable as v_
@@ -3918,6 +3919,8 @@ class game_Playing(QThread):
                                     if imgs_ is not None and imgs_ != False:
                                         is_game = True
                                         break
+                                    else:
+                                        _stop_please(v_.now_cla)
                                 time.sleep(1)
                             if is_game == False:
                                 # 자동으로 켜보고 안되면 알림하기...
