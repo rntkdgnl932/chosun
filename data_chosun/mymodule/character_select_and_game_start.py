@@ -163,6 +163,11 @@ def game_start_screen(cla, character_id):
 
 
                 for i in range(10):
+                    all_confirms(cla)
+
+                    time.sleep(1)
+
+                for i in range(10):
                     result_confirm = all_confirms(cla)
                     if result_confirm == False:
                         result_loading = game_loading_check(cla)
