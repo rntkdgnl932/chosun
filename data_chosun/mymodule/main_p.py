@@ -3926,6 +3926,16 @@ class game_Playing(QThread):
                             if is_game == False:
                                 # 자동으로 켜보고 안되면 알림하기...
 
+                                for d in range(2):
+                                    full_path = "c:\\my_games\\" + str(v_.game_folder) + "\\" + str(
+                                        v_.data_folder) + "\\imgs\\check\\game_threebutton.PNG"
+                                    img_array = np.fromfile(full_path, np.uint8)
+                                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                    imgs_ = imgs_set_(0, 50, 960, 1030, v_.now_cla, img, 0.7)
+                                    if imgs_ is not None and imgs_ != False:
+                                        click_pos_reg(imgs_.x - 40, imgs_.y, v_.now_cla)
+                                    time.sleep(1)
+
                                 result_game_out_check = game_out_check(v_.now_cla)
 
                                 if result_game_out_check == True:
