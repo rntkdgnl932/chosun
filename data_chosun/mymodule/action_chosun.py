@@ -572,6 +572,7 @@ def attack_check(cla):
 
                 if is_attack == False:
                     v_.jadong_count += 1
+                    print("재시작 대기", v_.jadong_count)
                     if v_.jadong_count > 7:
                         v_.jadong_count = 0
                         print("재시작 해버리기")
@@ -603,7 +604,8 @@ def attack_check(cla):
 
 
                 else:
-                    v_.jadong_count = 0
+                    if v_.jadong_count > 0:
+                        v_.jadong_count -= 1
 
         return is_attack
 
