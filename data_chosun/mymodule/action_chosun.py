@@ -901,7 +901,7 @@ def all_confirms(cla):
 
         print("all_confirms")
 
-        skip_start(cla)
+
 
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\all_confirms\\notify_confirm.PNG"
         img_array = np.fromfile(full_path, np.uint8)

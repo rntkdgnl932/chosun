@@ -58,6 +58,13 @@ def go_test():
         if imgs_ is not None and imgs_ != False:
             print("recorvery_btn", imgs_)
 
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\clean_screen\\close_1.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(600, 320, 660, 380, cla, img, 0.85)
+        if imgs_ is not None and imgs_ != False:
+            print("close_1", imgs_)
+
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\hp_zero.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)

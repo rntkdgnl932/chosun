@@ -39,7 +39,7 @@ def clean_screen_start(cla):
     import numpy as np
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2, imgs_set_for
-    from action_chosun import out_check, all_confirms, juljun_off
+    from action_chosun import out_check, all_confirms, juljun_off, skip_start, skip_check
     from dead_die import dead_check, dead_recovery
     from potion_chosun import potion_buy
 
@@ -47,6 +47,10 @@ def clean_screen_start(cla):
         print("clean_screen_start")
 
         juljun_off(cla)
+
+        result_skip = skip_check(cla)
+        if result_skip == True:
+            skip_start(cla)
 
         all_confirms(cla)
 
