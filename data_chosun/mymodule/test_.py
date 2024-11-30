@@ -37,7 +37,7 @@ def go_test():
 
     from function_game import imgs_set_for, click_pos_reg, imgs_set_, text_check_get
     from clean_screen_chosun import clean_screen
-    from action_chosun import juljun_off, juljun_on, attack_check
+    from action_chosun import juljun_off, juljun_on, attack_check, skip_start
     from tuto_chosun import way_click, quest_btn
     from potion_chosun import potion_buy, go_maul
     from get_item import get_item_start
@@ -51,75 +51,87 @@ def go_test():
         # spot = "던전_수련동굴"
         # dungeon_spot(cla, spot)
 
+        skip_start(cla)
+
+
+        ############################################################
+        ################ auction ###########################
+        #################################################################
+
         # text_check_get(365, 520, 433, 533, cla)
 
-        is_point = False
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\point.PNG"
-        img_array = np.fromfile(full_path, np.uint8)
-        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(365, 520, 433, 533, cla, img, 0.85)
-        if imgs_ is not None and imgs_ != False:
-            print("point", imgs_)
-            is_point = True
-            point_x = imgs_.x
+        # is_point = False
+        # full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\point.PNG"
+        # img_array = np.fromfile(full_path, np.uint8)
+        # img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        # imgs_ = imgs_set_(365, 520, 433, 533, cla, img, 0.85)
+        # if imgs_ is not None and imgs_ != False:
+        #     print("point", imgs_)
+        #     is_point = True
+        #     point_x = imgs_.x
+        #
+        # x_reg_1 = 10000
+        # x_reg_2 = 0
+        # if is_point == True:
+        #     print("소수점 앞 자리, 가장 앞에 숫자 찾기")
+        #     for i in range(10):
+        #         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+        #         img_array = np.fromfile(full_path, np.uint8)
+        #         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        #         imgs_ = imgs_set_(365, 512, point_x, 533, cla, img, 0.85)
+        #         if imgs_ is not None and imgs_ != False:
+        #             print(str(i), imgs_)
+        #             if x_reg_1 > imgs_.x:
+        #                 x_reg_1 = imgs_.x
+        #     for i in range(10):
+        #         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+        #         img_array = np.fromfile(full_path, np.uint8)
+        #         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        #         imgs_ = imgs_set_(x_reg_1 - 4, 512, point_x, 533, cla, img, 0.85)
+        #         if imgs_ is not None and imgs_ != False:
+        #             print(str(i), imgs_)
+        #             if x_reg_1 > imgs_.x:
+        #                 x_reg_1 = imgs_.x
+        #
+        #
+        #     print("소수점 뒷 자리, 가장 앞에 숫자 찾기")
+        #     for i in range(10):
+        #         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+        #         img_array = np.fromfile(full_path, np.uint8)
+        #         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        #         imgs_ = imgs_set_(point_x, 512, 433, 533, cla, img, 0.85)
+        #         if imgs_ is not None and imgs_ != False:
+        #             print(str(i), imgs_)
+        #             if x_reg_1 > imgs_.x:
+        #                 x_reg_1 = imgs_.x
+        # else:
+        #     print("소수점 없을 경우 가장 앞에 숫자 및 가장 뒷 숫자 찾기")
+        #
+        #     for i in range(10):
+        #         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+        #         img_array = np.fromfile(full_path, np.uint8)
+        #         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        #         imgs_ = imgs_set_(365, 512, 433, 533, cla, img, 0.85)
+        #         if imgs_ is not None and imgs_ != False:
+        #             print(str(i), imgs_)
+        #             if x_reg_1 > imgs_.x:
+        #                 x_reg_1 = imgs_.x
+        #     for i in range(10):
+        #         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
+        #         img_array = np.fromfile(full_path, np.uint8)
+        #         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        #         imgs_ = imgs_set_(x_reg_1 - 4, 512, x_reg_1 + 4, 533, cla, img, 0.85)
+        #         if imgs_ is not None and imgs_ != False:
+        #             print(str(i), imgs_)
+        #             if x_reg_1 > imgs_.x:
+        #                 x_reg_1 = imgs_.x
+        #
+        # print("x_reg", x_reg_1)
 
-        x_reg_1 = 10000
-        x_reg_2 = 0
-        if is_point == True:
-            print("소수점 앞 자리, 가장 앞에 숫자 찾기")
-            for i in range(10):
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
-                img_array = np.fromfile(full_path, np.uint8)
-                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(365, 512, point_x, 533, cla, img, 0.85)
-                if imgs_ is not None and imgs_ != False:
-                    print(str(i), imgs_)
-                    if x_reg_1 > imgs_.x:
-                        x_reg_1 = imgs_.x
-            for i in range(10):
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
-                img_array = np.fromfile(full_path, np.uint8)
-                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(x_reg_1 - 4, 512, point_x, 533, cla, img, 0.85)
-                if imgs_ is not None and imgs_ != False:
-                    print(str(i), imgs_)
-                    if x_reg_1 > imgs_.x:
-                        x_reg_1 = imgs_.x
+        ########################################################
+        ######################################################
+        ########################################################
 
-
-            print("소수점 뒷 자리, 가장 앞에 숫자 찾기")
-            for i in range(10):
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
-                img_array = np.fromfile(full_path, np.uint8)
-                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(point_x, 512, 433, 533, cla, img, 0.85)
-                if imgs_ is not None and imgs_ != False:
-                    print(str(i), imgs_)
-                    if x_reg_1 > imgs_.x:
-                        x_reg_1 = imgs_.x
-        else:
-            print("소수점 없을 경우 가장 앞에 숫자 및 가장 뒷 숫자 찾기")
-
-            for i in range(10):
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
-                img_array = np.fromfile(full_path, np.uint8)
-                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(365, 512, 433, 533, cla, img, 0.85)
-                if imgs_ is not None and imgs_ != False:
-                    print(str(i), imgs_)
-                    if x_reg_1 > imgs_.x:
-                        x_reg_1 = imgs_.x
-            for i in range(10):
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\low_price_num\\" + str(i) + ".PNG"
-                img_array = np.fromfile(full_path, np.uint8)
-                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(x_reg_1 - 4, 512, x_reg_1 + 4, 533, cla, img, 0.85)
-                if imgs_ is not None and imgs_ != False:
-                    print(str(i), imgs_)
-                    if x_reg_1 > imgs_.x:
-                        x_reg_1 = imgs_.x
-
-        print("x_reg", x_reg_1)
         # go_maul(cla)
 
         # full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\gold_checked.PNG"
@@ -129,12 +141,8 @@ def go_test():
         # if imgs_ is not None and imgs_ != False:
         #     print("gold_checked", imgs_)
 
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dungeon\\special_lock.PNG"
-        img_array = np.fromfile(full_path, np.uint8)
-        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(255, 500, 700, 670, cla, img, 0.85)
-        if imgs_ is not None and imgs_ != False:
-            print("special_lock", imgs_)
+
+
         # a = 215
         # b = 312
         # c = 223
