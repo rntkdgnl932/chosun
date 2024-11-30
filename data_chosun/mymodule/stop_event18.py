@@ -33,6 +33,26 @@ def _stop_please(cla):
             print("18_close_2", imgs_)
             click_pos_reg(imgs_.x, imgs_.y, cla)
 
+        for i in range(10):
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\18_event\\apk_open_title.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(0, 0, 920, 1030, cla, img, 0.85)
+            if imgs_ is not None and imgs_ != False:
+                print("apk_open_title", imgs_)
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\18_event\\apk_open_cancle.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(0, 0, 920, 1030, cla, img, 0.85)
+                if imgs_ is not None and imgs_ != False:
+                    print("apk_open_cancle", imgs_)
+                    click_pos_reg(imgs_.x, imgs_.y, cla)
+            else:
+                break
+            time.sleep(0.5)
+
+
+
 
 
     except Exception as e:

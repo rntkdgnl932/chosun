@@ -701,6 +701,129 @@ def click_pos_reg(pos_1, pos_2, cla):
     except Exception as e:
         print("error:", e)
 
+def click_pos_reg_double_click(pos_1, pos_2, cla):
+    import serial
+    import pyautogui
+    try:
+
+        coordinate = 0
+        if cla == 'one':
+            coordinate = 0
+        if cla == 'two':
+            coordinate = 0
+        if cla == 'three':
+            coordinate = 0
+        if cla == 'four':
+            coordinate = 0
+        if cla == 'five':
+            coordinate = 0
+        if cla == 'six':
+            coordinate = 0
+
+        # pyautogui.moveTo(pos_1 + coordinate, pos_2)
+
+        if v_.now_arduino == "on":
+            arduino_port = v_.COM_
+            baudrate = v_.speed_
+
+            ser = serial.Serial(arduino_port, baudrate)
+
+            moveZ = 1
+            k_reg = v_.mouse_speed
+            c_reg = v_.mouse_pm
+
+            move_ = False
+            move_count = 0
+            while move_ is False:
+                move_count += 1
+                if move_count > 300:
+                    move_ = True
+
+                # 이동 시킬 포인트 계산
+                x_reg = pos_1 + coordinate - pyautogui.position()[0]
+                y_reg = pos_2 - pyautogui.position()[1]
+
+                if -c_reg < x_reg < c_reg:
+                    moveX = x_reg
+                elif x_reg > 0:
+                    if x_reg == k_reg:
+                        moveX = x_reg
+                    else:
+                        moveX = min(k_reg, x_reg)
+                else:
+                    if x_reg == -k_reg:
+                        moveX = x_reg
+                    else:
+                        moveX = max(-k_reg, x_reg)
+
+                if -c_reg < y_reg < c_reg:
+                    moveY = y_reg
+                elif y_reg > 0:
+                    if y_reg == k_reg:
+                        moveY = y_reg
+                    else:
+                        moveY = min(k_reg, y_reg)
+                else:
+                    if y_reg == -k_reg:
+                        moveY = y_reg
+                    else:
+                        moveY = max(-k_reg, y_reg)
+
+                data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
+                ser.write(data.encode())
+                received_data = ser.readline().decode().strip()
+
+                if received_data == '0' or (-c_reg < moveX < c_reg and -c_reg < moveY < c_reg):
+                    x_reg = pos_1 + coordinate - pyautogui.position()[0]
+                    y_reg = pos_2 - pyautogui.position()[1]
+                    if -c_reg < x_reg < c_reg and -c_reg < y_reg < c_reg and pyautogui.position()[1] >= 31:
+                        move_ = True
+
+                        # moveZ = 2
+                        # data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
+                        # ser.write(data.encode())
+
+                        moveX = 0
+                        moveY = 0
+                        moveZ = 3
+                        data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
+                        ser.write(data.encode())
+
+
+                        moveX = 0
+                        moveY = 0
+                        moveZ = 4
+                        data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
+                        ser.write(data.encode())
+
+                        moveX = 0
+                        moveY = 0
+                        moveZ = 3
+                        data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
+                        ser.write(data.encode())
+
+
+                        moveX = 0
+                        moveY = 0
+                        moveZ = 4
+                        data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
+                        ser.write(data.encode())
+
+                        # drag_pos_Press()
+                        # time.sleep(0.1)
+                        # drag_pos_Release()
+
+            ser.close()
+        else:
+
+            # pyautogui.moveTo(pos_1 + random_int() + coordinate, pos_2 + random_int())
+
+            pyautogui.click(pos_1 + random_int() + coordinate, pos_2 + random_int())
+        time.sleep(0.1)
+
+
+    except Exception as e:
+        print("error:", e)
 
 def mouse_move_cpp(pos_1, pos_2, cla):
     try:
