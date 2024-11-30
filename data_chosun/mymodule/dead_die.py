@@ -23,10 +23,19 @@ def dead_check(cla, data):
 
         is_dead = False
 
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\recorvery_btn.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(640, 270, 700, 330, cla, img, 0.85)
+        if imgs_ is not None and imgs_ != False:
+            print("recorvery_btn", imgs_)
+            is_dead = True
+
+
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\hp_zero.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(70, 288, 140, 310, cla, img, 0.9)
+        imgs_ = imgs_set_(70, 288, 140, 310, cla, img, 0.85)
         if imgs_ is not None and imgs_ != False:
             print("hp_zero", imgs_)
             juljun_off(cla)
