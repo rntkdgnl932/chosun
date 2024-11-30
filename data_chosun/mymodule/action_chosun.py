@@ -691,6 +691,7 @@ def juljun_check(cla):
     import cv2
 
     from function_game import imgs_set_, click_pos_reg
+    from boonhae_collection import collection_start, boonhae_start
     try:
 
         is_juljun = False
@@ -704,6 +705,17 @@ def juljun_check(cla):
         if imgs_ is not None and imgs_ != False:
             print("juljun_off_btn", imgs_)
             is_juljun = True
+
+        if is_juljun == True:
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\jadong\\juljun_check\\exceeded_limit.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(330, 360, 600, 430, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("exceeded_limit", imgs_)
+                collection_start(cla)
+                boonhae_start(cla)
+                is_juljun = False
 
 
         return is_juljun
