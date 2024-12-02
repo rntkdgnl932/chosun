@@ -51,44 +51,18 @@ def go_test():
         # spot = "던전_수련동굴"
         # dungeon_spot(cla, spot)
 
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\recorvery_btn.PNG"
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\app_chosun_1.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(640, 270, 700, 330, cla, img, 0.85)
+        imgs_ = imgs_set_(10, 350, 900, 670, cla, img, 0.85)
         if imgs_ is not None and imgs_ != False:
-            print("recorvery_btn", imgs_)
-
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\clean_screen\\close_1.PNG"
+            print("app_chosun_1...", imgs_)
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\app_chosun_2.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(600, 320, 660, 380, cla, img, 0.85)
+        imgs_ = imgs_set_(10, 350, 900, 670, cla, img, 0.85)
         if imgs_ is not None and imgs_ != False:
-            print("close_1", imgs_)
-
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\hp_zero.PNG"
-        img_array = np.fromfile(full_path, np.uint8)
-        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(70, 288, 140, 310, "two", img, 0.85)
-        if imgs_ is not None and imgs_ != False:
-            print("hp_zero", imgs_)
-
-        for i in range(10):
-            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\18_event\\apk_open_title.PNG"
-            img_array = np.fromfile(full_path, np.uint8)
-            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-            imgs_ = imgs_set_(0, 0, 920, 1030, cla, img, 0.85)
-            if imgs_ is not None and imgs_ != False:
-                print("apk_open_title", imgs_)
-                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\18_event\\apk_open_cancle.PNG"
-                img_array = np.fromfile(full_path, np.uint8)
-                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                imgs_ = imgs_set_(0, 0, 920, 1030, cla, img, 0.85)
-                if imgs_ is not None and imgs_ != False:
-                    print("apk_open_cancle", imgs_)
-                    click_pos_reg(imgs_.x, imgs_.y, cla)
-            else:
-                break
-            time.sleep(0.1)
+            print("app_chosun_2...", imgs_)
 
 
 

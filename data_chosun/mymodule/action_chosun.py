@@ -199,12 +199,12 @@ def game_out_check(cla):
             click_pos_reg(imgs_.x, imgs_.y - 10, cla)
             is_out = True
         else:
-            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\app_chosun_1.PNG"
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\app_chosun_2.PNG"
             img_array = np.fromfile(full_path, np.uint8)
             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
             imgs_ = imgs_set_(10, 350, 900, 670, cla, img, 0.85)
             if imgs_ is not None and imgs_ != False:
-                print("app_chosun_1...", imgs_)
+                print("app_chosun_2...", imgs_)
                 click_pos_reg(imgs_.x, imgs_.y, cla)
                 is_out = True
 
