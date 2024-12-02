@@ -10,6 +10,8 @@ import time
 import sys
 import variable as v_
 
+from PyQt5.QtTest import *
+
 sys.path.append('C:/my_games/' + str(v_.game_folder) + '/' + str(v_.data_folder) + '/mymodule')
 
 
@@ -565,7 +567,7 @@ def click_pos_2(pos_1, pos_2, cla):
                         data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
                         ser.write(data.encode())
 
-                        time.sleep(0.4)
+                        QTest.qWait(100)
 
                         moveX = 0
                         moveY = 0
@@ -677,7 +679,7 @@ def click_pos_reg(pos_1, pos_2, cla):
                         data = f'x = {moveX}, y = {moveY}, z = {moveZ}\n'
                         ser.write(data.encode())
 
-                        time.sleep(0.4)
+                        QTest.qWait(100)
 
                         moveX = 0
                         moveY = 0
