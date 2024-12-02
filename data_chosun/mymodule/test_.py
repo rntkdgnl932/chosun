@@ -50,6 +50,8 @@ def go_test():
 
         # spot = "던전_수련동굴"
         # dungeon_spot(cla, spot)
+        juljun_off(cla)
+
 
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\app_chosun_1.PNG"
         img_array = np.fromfile(full_path, np.uint8)
