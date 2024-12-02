@@ -14,11 +14,11 @@ def clean_screen(cla):
     import numpy as np
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2
-    from action_chosun import out_check
+    from action_chosun import out_check, game_off
 
 
     try:
-
+        clean = False
 
         for i in range(5):
 
@@ -27,8 +27,12 @@ def clean_screen(cla):
             if result_out == False:
                 clean_screen_start(cla)
             else:
+                clean = True
                 break
             QTest.qWait(500)
+
+        if clean == False:
+            game_off(cla)
 
     except Exception as e:
         print(e)

@@ -138,6 +138,43 @@ def game_check(cla):
         print(e)
 
 
+
+def game_off(cla):
+    import numpy as np
+    import cv2
+
+    from function_game import imgs_set_, click_pos_reg
+    try:
+
+        print("game_off")
+        for i in range(20):
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_title_1.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(0, 0, 960, 1030, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("game_title_1", imgs_)
+                close_x = imgs_.x
+                close_y = imgs_.y
+                if 20 > close_y:
+                    close_y = 20
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_close_btn.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(close_x, close_y - 20, close_x + 110, close_y + 20, cla, img, 0.8)
+                if imgs_ is not None and imgs_ != False:
+                    print("game_close_btn", imgs_)
+                    click_pos_reg(imgs_.x, imgs_.y, cla)
+            else:
+                result_game_out_check = game_out_check(cla)
+                if result_game_out_check == True:
+                    game_out_check_after(cla)
+                    break
+            QTest.qWait(1000)
+
+    except Exception as e:
+        print(e)
+
 def game_out_check(cla):
     import numpy as np
     import cv2
@@ -576,30 +613,7 @@ def attack_check(cla):
                     if v_.jadong_count > 7:
                         v_.jadong_count = 0
                         print("재시작 해버리기")
-                        for i in range(20):
-                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_title_1.PNG"
-                            img_array = np.fromfile(full_path, np.uint8)
-                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                            imgs_ = imgs_set_(0, 0, 960, 1030, cla, img, 0.8)
-                            if imgs_ is not None and imgs_ != False:
-                                print("game_title_1", imgs_)
-                                close_x = imgs_.x
-                                close_y = imgs_.y
-                                if 20 > close_y:
-                                    close_y = 20
-                                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_close_btn.PNG"
-                                img_array = np.fromfile(full_path, np.uint8)
-                                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-                                imgs_ = imgs_set_(close_x, close_y - 20, close_x + 110, close_y + 20, cla, img, 0.8)
-                                if imgs_ is not None and imgs_ != False:
-                                    print("game_close_btn", imgs_)
-                                    click_pos_reg(imgs_.x, imgs_.y, cla)
-                            else:
-                                result_game_out_check = game_out_check(cla)
-                                if result_game_out_check == True:
-                                    game_out_check_after(cla)
-                                    break
-                            QTest.qWait(1000)
+                        game_off(cla)
 
 
 
