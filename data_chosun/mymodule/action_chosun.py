@@ -816,7 +816,7 @@ def juljun_off(cla):
             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
             imgs_ = imgs_set_(375, 700, 540, 770, cla, img, 0.85)
             if imgs_ is not None and imgs_ != False:
-                print("juljun_off_btn", i, imgs_)
+                print("juljun_off_btn", imgs_)
                 drag_pos(420, 730, 650, 730, cla)
             else:
                 juljun = False
