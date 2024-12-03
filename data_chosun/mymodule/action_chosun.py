@@ -72,6 +72,15 @@ def game_check(cla):
             print("fix_complete", imgs_)
             is_checked = True
             why = "서버 점검 완료"
+        else:
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\fix_complete2.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(360, 340, 540, 400, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                print("fix_complete2", imgs_)
+                is_checked = True
+                why = "순차 서버 점검 완료"
 
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\text_apply.PNG"
         img_array = np.fromfile(full_path, np.uint8)
@@ -113,20 +122,44 @@ def game_check(cla):
 
         if is_checked is True:
             line_to_me(cla, why)
-            dir_path = "C:\\my_games\\load\\" + str(v_.game_folder)
-            file_path = dir_path + "\\start.txt"
-            # cla.txt
-            cla_data = str(cla) + "cla"
-            file_path2 = dir_path + "\\" + cla_data + ".txt"
-            with open(file_path, "w", encoding='utf-8-sig') as file:
-                data = 'no'
-                file.write(str(data))
-                time.sleep(0.2)
-            with open(file_path2, "w", encoding='utf-8-sig') as file:
-                data = cla
-                file.write(str(data))
-                time.sleep(0.2)
-            os.execl(sys.executable, sys.executable, *sys.argv)
+            # dir_path = "C:\\my_games\\load\\" + str(v_.game_folder)
+            # file_path = dir_path + "\\start.txt"
+            # # cla.txt
+            # cla_data = str(cla) + "cla"
+            # file_path2 = dir_path + "\\" + cla_data + ".txt"
+            # with open(file_path, "w", encoding='utf-8-sig') as file:
+            #     data = 'no'
+            #     file.write(str(data))
+            #     time.sleep(0.2)
+            # with open(file_path2, "w", encoding='utf-8-sig') as file:
+            #     data = cla
+            #     file.write(str(data))
+            #     time.sleep(0.2)
+            # os.execl(sys.executable, sys.executable, *sys.argv)
+            is_fixed = False
+            while is_fixed is False:
+                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\fix_complete.PNG"
+                img_array = np.fromfile(full_path, np.uint8)
+                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                imgs_ = imgs_set_(360, 340, 540, 400, cla, img, 0.8)
+                if imgs_ is not None and imgs_ != False:
+                    print("fix_complete", imgs_)
+                    is_fixed = True
+                    why = "서버 점검 완료"
+                else:
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\fix_complete2.PNG"
+                    img_array = np.fromfile(full_path, np.uint8)
+                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                    imgs_ = imgs_set_(360, 340, 540, 400, cla, img, 0.8)
+                    if imgs_ is not None and imgs_ != False:
+                        print("fix_complete2", imgs_)
+                        is_fixed = True
+                        why = "순차 서버 점검 완료"
+                time.sleep(10)
+                if is_fixed == True:
+                    line_to_me(cla, why)
+                    game_off(cla)
+
         elif is_start == True:
 
             result_schedule = myQuest_play_check(cla, "game_check")
@@ -770,7 +803,14 @@ def juljun_off(cla):
 
         print("juljun_off")
 
-        for i in range(5):
+        juljun = True
+        juljun_count = 0
+        while juljun is True:
+            juljun_count += 1
+            if juljun_count > 30:
+                juljun = False
+                game_off(cla)
+
             full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\action\\juljun_check\\juljun_off_btn.PNG"
             img_array = np.fromfile(full_path, np.uint8)
             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
@@ -779,8 +819,8 @@ def juljun_off(cla):
                 print("juljun_off_btn", i, imgs_)
                 drag_pos(420, 730, 650, 730, cla)
             else:
+                juljun = False
                 is_juljun = False
-                break
             time.sleep(0.5)
 
 
