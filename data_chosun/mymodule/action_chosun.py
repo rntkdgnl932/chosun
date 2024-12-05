@@ -900,6 +900,7 @@ def game_loading_check(cla):
                 if imgs_ is not None and imgs_ != False:
                     print("downloading", imgs_)
                     loading = True
+                    all_confirms(cla)
 
         return loading
     except Exception as e:
