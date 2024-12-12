@@ -13,6 +13,8 @@ sys.path.append('C:/my_games/' + str(v_.game_folder) + '/' + str(v_.data_folder)
 def jadong_start(cla):
     import numpy as np
     import cv2
+    from datetime import datetime
+
     from function_game import imgs_set_, click_pos_reg, click_pos_2
     from action_chosun import out_check, juljun_off, all_confirms, game_loading_check, game_loading, attack_check, juljun_on, juljun_check, attack_on
     from potion_chosun import potion_check, potion_buy
@@ -50,6 +52,22 @@ def jadong_start(cla):
                 result_attack = attack_check(cla)
                 if result_attack == True:
                     v_.jadong_count = 0
+
+                    nowHour = int(datetime.today().strftime("%H"))
+                    print("nowHour", nowHour)
+                    nowMinute = int(datetime.today().strftime("%M"))
+                    print("nowMinute", nowMinute)
+
+                    if nowHour % 2 == 0:
+                        print("짝수")
+                    else:
+                        print("홀수")
+
+                        if nowMinute < 2:
+                            collection_start(cla)
+                            boonhae_start(cla)
+                            juljun_on(cla)
+
                     potion_check(cla)
                     result_dead = dead_check(cla, "자동사냥")
                     if result_dead == True:

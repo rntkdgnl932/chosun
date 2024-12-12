@@ -101,6 +101,7 @@ def dead_recovery(cla):
     from clean_screen_chosun import clean_screen
     from action_chosun import all_confirms, menu_open
     from massenger import line_to_me
+    from boonhae_collection import collection_start, boonhae_start
 
     try:
         print("dead_recovery")
@@ -291,7 +292,8 @@ def dead_recovery(cla):
                 break
             time.sleep(1)
 
-        clean_screen(cla)
+        collection_start(cla)
+        boonhae_start(cla)
 
 
 

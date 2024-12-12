@@ -61,6 +61,7 @@ from jadong_chosun import jadong_start
 from character_select_and_game_start import game_start_screen
 from stop_event18 import _stop_please
 from dungeon_chosun import dungeon_start
+from auction_game import auction_start
 
 from server import game_start
 import variable as v_
@@ -3891,6 +3892,9 @@ class game_Playing(QThread):
                                     tuto_start(v_.now_cla)
                                 elif result_schedule_ == "각종템받기":
                                     get_item_start(v_.now_cla)
+                                    myQuest_play_add(v_.now_cla, result_schedule_)
+                                elif result_schedule_ == "거래소등록":
+                                    auction_start(v_.now_cla)
                                     myQuest_play_add(v_.now_cla, result_schedule_)
                                 elif "던전" in result_schedule_:
                                     dungeon_start(v_.now_cla, result_schedule_)

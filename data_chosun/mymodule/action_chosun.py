@@ -816,7 +816,7 @@ def juljun_off(cla):
             img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
             imgs_ = imgs_set_(375, 700, 540, 770, cla, img, 0.85)
             if imgs_ is not None and imgs_ != False:
-                print("juljun_off_btn", imgs_)
+                print("juljun_off : juljun_off_btn", imgs_)
                 drag_pos(420, 730, 650, 730, cla)
             else:
                 juljun = False
@@ -1044,6 +1044,25 @@ def all_confirms(cla):
                                 print("dun_in_confirm", imgs_)
                                 click_pos_reg(imgs_.x, imgs_.y, cla)
                                 is_confirm = True
+                            else:
+                                # auction
+                                full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\auction_sell_confirm.PNG"
+                                img_array = np.fromfile(full_path, np.uint8)
+                                img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                imgs_ = imgs_set_(400, 630, 650, 750, cla, img, 0.85)
+                                if imgs_ is not None and imgs_ != False:
+                                    print("auction_sell_confirm", imgs_)
+                                    click_pos_reg(imgs_.x, imgs_.y, cla)
+                                    is_confirm = True
+                                else:
+                                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\registery_confirm.PNG"
+                                    img_array = np.fromfile(full_path, np.uint8)
+                                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                                    imgs_ = imgs_set_(400, 630, 650, 750, cla, img, 0.85)
+                                    if imgs_ is not None and imgs_ != False:
+                                        print("registery_confirm", imgs_)
+                                        click_pos_reg(imgs_.x, imgs_.y, cla)
+                                        is_confirm = True
         return is_confirm
     except Exception as e:
         print(e)
