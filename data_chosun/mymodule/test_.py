@@ -56,11 +56,11 @@ def go_test():
         # dungeon_spot(cla, spot)
 
         # 최대수량 적기
-        # auction_start(cla)
+        auction_start(cla)
 
         # auction_low_num(cla)
 
-        auction_qun_num(cla)
+        # auction_qun_num(cla)
 
         # full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\auction\\menu_auction.PNG"
         # img_array = np.fromfile(full_path, np.uint8)
