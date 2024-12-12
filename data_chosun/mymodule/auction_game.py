@@ -62,8 +62,8 @@ def auction_start(cla):
     from boonhae_collection import collection_start, boonhae_start
     try:
         # 아이템부터 정리 후
-        # collection_start(cla)
-        # boonhae_start(cla)
+        collection_start(cla)
+        boonhae_start(cla)
 
         # 거래소 들어가서 정산 후
         auction_in(cla)
