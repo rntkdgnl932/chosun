@@ -84,6 +84,14 @@ def clean_screen_start(cla):
             print("title_close_1", imgs_)
             click_pos_reg(imgs_.x, imgs_.y, cla)
 
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\clean_screen\\title_close_2.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(870, 270, 925, 330, cla, img, 0.85)
+        if imgs_ is not None and imgs_ != False:
+            print("title_close_2", imgs_)
+            click_pos_reg(imgs_.x, imgs_.y, cla)
+
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\clean_screen\\close_1.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)

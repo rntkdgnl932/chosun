@@ -42,7 +42,7 @@ def go_test():
     from clean_screen_chosun import clean_screen
     from action_chosun import juljun_off, juljun_on, attack_check, skip_start, all_confirms
     from tuto_chosun import way_click, quest_btn
-    from potion_chosun import potion_buy, go_maul
+    from potion_chosun import potion_buy, go_maul, go_chango, chango_in
     from get_item import get_item_start
     from jadong_chosun import jadong_spot
     from boonhae_collection import collection_start, boonhae_start
@@ -56,9 +56,18 @@ def go_test():
         # dungeon_spot(cla, spot)
 
         # 최대수량 적기
-        auction_start(cla)
+        # go_chango(cla)
 
         # auction_low_num(cla)
+
+        potion_buy(cla)
+
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\clean_screen\\title_close_1.PNG"
+        img_array = np.fromfile(full_path, np.uint8)
+        img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+        imgs_ = imgs_set_(870, 270, 925, 330, cla, img, 0.85)
+        if imgs_ is not None and imgs_ != False:
+            print("title_close_1", imgs_)
 
         # auction_qun_num(cla)
 
