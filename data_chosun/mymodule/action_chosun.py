@@ -365,9 +365,17 @@ def game_out_check_after(cla):
                             print("update_btn", imgs_)
                             click_pos_reg(imgs_.x, imgs_.y, cla)
                         else:
-                            result_confirm = all_confirms(cla)
-                            if result_confirm == True:
-                                time.sleep(3)
+                            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\continue_btn.PNG"
+                            img_array = np.fromfile(full_path, np.uint8)
+                            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                            imgs_ = imgs_set_(650, 500, 760, 560, cla, img, 0.8)
+                            if imgs_ is not None and imgs_ != False:
+                                print("continue_btn", imgs_)
+                                click_pos_reg(imgs_.x, imgs_.y, cla)
+                            else:
+                                result_confirm = all_confirms(cla)
+                                if result_confirm == True:
+                                    time.sleep(3)
                 QTest.qWait(1000)
             for i in range(10):
                 full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\play_btn.PNG"
