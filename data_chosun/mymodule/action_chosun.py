@@ -698,7 +698,7 @@ def attack_on(cla):
         print("attack_on")
 
         clean_screen(cla)
-        click_pos_2(885, 655, cla)
+        click_pos_2(865, 655, cla)
 
         attack_start = False
         attack_start_count = 0
@@ -749,10 +749,10 @@ def attack_on(cla):
                 result_juljun = juljun_check(cla)
                 if result_juljun == False:
                     clean_screen(cla)
-                    click_pos_2(885, 655, cla)
+                    click_pos_2(865, 655, cla)
                 else:
                     juljun_off(cla)
-                    click_pos_2(885, 655, cla)
+                    click_pos_2(865, 655, cla)
             else:
                 attack_start = True
 
