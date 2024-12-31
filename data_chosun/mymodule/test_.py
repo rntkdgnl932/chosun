@@ -60,14 +60,12 @@ def go_test():
 
         # auction_low_num(cla)
 
-        potion_buy(cla)
-
-        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\clean_screen\\title_close_1.PNG"
+        full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\game_start\\start_btn.PNG"
         img_array = np.fromfile(full_path, np.uint8)
         img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
-        imgs_ = imgs_set_(870, 270, 925, 330, cla, img, 0.85)
+        imgs_ = imgs_set_(700, 730, 820, 800, cla, img, 0.8)
         if imgs_ is not None and imgs_ != False:
-            print("title_close_1", imgs_)
+            print("start_btn", imgs_)
 
         # auction_qun_num(cla)
 

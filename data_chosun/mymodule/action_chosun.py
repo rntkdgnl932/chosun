@@ -390,6 +390,22 @@ def game_out_check_after(cla):
                 QTest.qWait(1000)
         else:
             print("all_False", all_False)
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\play_btn.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(40, 520, 140, 570, cla, img, 0.8)
+            if imgs_ is not None and imgs_ != False:
+                for i in range(10):
+                    full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\check\\game_check\\play_btn.PNG"
+                    img_array = np.fromfile(full_path, np.uint8)
+                    img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+                    imgs_ = imgs_set_(40, 520, 140, 570, cla, img, 0.8)
+                    if imgs_ is not None and imgs_ != False:
+                        print("play_btn", imgs_)
+                        click_pos_reg(imgs_.x, imgs_.y, cla)
+                    else:
+                        break
+                    QTest.qWait(1000)
 
         return all_False
     except Exception as e:
