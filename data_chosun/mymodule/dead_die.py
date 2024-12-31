@@ -15,13 +15,25 @@ def dead_check(cla, data):
     import cv2
     from function_game import imgs_set_, click_pos_reg, click_pos_2
     from potion_chosun import potion_buy
-    from action_chosun import game_loading_check, game_loading, juljun_off, skip_start
+    from action_chosun import game_loading_check, game_loading, juljun_off, skip_start, juljun_check
     from schedule import myQuest_play_check, myQuest_play_add
 
     try:
         print("dead_check")
 
         is_dead = False
+
+        result_juljun = juljun_check(cla)
+
+        if result_juljun == True:
+            full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\juljun_dead.PNG"
+            img_array = np.fromfile(full_path, np.uint8)
+            img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
+            imgs_ = imgs_set_(370, 590, 460, 640, cla, img, 0.85)
+            if imgs_ is not None and imgs_ != False:
+                print("juljun_dead", imgs_)
+                is_dead = True
+                juljun_off(cla)
 
         full_path = "c:\\my_games\\chosun\\data_chosun\\imgs\\dead_die\\recorvery_btn.PNG"
         img_array = np.fromfile(full_path, np.uint8)
@@ -75,8 +87,7 @@ def dead_check(cla, data):
                     break
                 time.sleep(1)
 
-            if data == "튜토육성":
-                myQuest_play_add(cla, data)
+
 
 
 
@@ -86,7 +97,8 @@ def dead_check(cla, data):
                     game_loading(cla)
                     break
                 time.sleep(1)
-
+        if is_dead == True and data == "튜토육성":
+            myQuest_play_add(cla, data)
 
         return is_dead
 
